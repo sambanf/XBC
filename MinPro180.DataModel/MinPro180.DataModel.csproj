@@ -53,6 +53,31 @@
     <Compile Include="Class1.cs" />
     <Compile Include="MinProContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="t_assignment.cs" />
+    <Compile Include="t_audit_log.cs" />
+    <Compile Include="t_batch.cs" />
+    <Compile Include="t_biodata.cs" />
+    <Compile Include="t_bootcamp_test_type.cs" />
+    <Compile Include="t_bootcamp_type.cs" />
+    <Compile Include="t_category.cs" />
+    <Compile Include="t_clazz.cs" />
+    <Compile Include="t_feedback.cs" />
+    <Compile Include="t_idle_news.cs" />
+    <Compile Include="t_menu.cs" />
+    <Compile Include="t_menu_access.cs" />
+    <Compile Include="t_monitoring.cs" />
+    <Compile Include="t_office.cs" />
+    <Compile Include="t_question.cs" />
+    <Compile Include="t_role.cs" />
+    <Compile Include="t_room.cs" />
+    <Compile Include="t_technology.cs" />
+    <Compile Include="t_technology_trainer.cs" />
+    <Compile Include="t_test.cs" />
+    <Compile Include="t_testimony.cs" />
+    <Compile Include="t_trainer.cs" />
+    <Compile Include="t_user.cs" />
+    <Compile Include="t_version.cs" />
+    <Compile Include="t_version_detail.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
