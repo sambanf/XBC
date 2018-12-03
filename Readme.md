@@ -1,2 +1,1 @@
-tambahan dari Naufaldy Rooswandy
-Jangan tambah tambah Naufal
+tambahan dari Naufaldy Rooswandy, Sara
