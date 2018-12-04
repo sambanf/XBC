@@ -28,8 +28,7 @@ namespace MinPro180.DataModel
 
         public DateTime created_on { get; set; }
 
-        [StringLength(10)]
-        public string modified_by { get; set; }
+        public long? modified_by { get; set; }
 
         public DateTime? modified_on { get; set; }
 

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MinPro180.ViewModel.UserViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.role_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.active)
+        </th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.active)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        @*<span class="caret"></span>*@
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        @*<li class="li-delete" data-id="@item.id"><a href="#">Delete</a></li>*@
+                        <li><a href="#">Edit</a></li>
+                        <li><a href="#">Deactive</a></li>
+                    </ul>
+                </div>
+            </td>
+
+        </tr>
+    }
+
+</table>

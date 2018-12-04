@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="C__MigrationHistory.cs" />
     <Compile Include="MinProContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="t_assignment.cs" />
