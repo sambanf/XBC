@@ -10,8 +10,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.role_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.role_id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.role_id, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.role_id, (IEnumerable<SelectListItem>)ViewBag.ListRole, "-Role Name-", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.role_id, null, new { @class = "text-danger" })
             </div>
         </div>
 

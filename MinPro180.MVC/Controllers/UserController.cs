@@ -23,11 +23,13 @@ namespace MinPro180.MVC.Controllers
         //Create
         public ActionResult Create()
         {
+            ViewBag.ListRole = new SelectList(RoleRepo.All(), "id", "name");
             return PartialView("_Create");
         }
         [HttpPost]
         public ActionResult Create(UserViewModel model)
         {
+            ViewBag.ListRole = new SelectList(RoleRepo.All(), "id", "name");
             ResponResultViewModel result = UserRepo.Update(model);
             return Json(new
             {
