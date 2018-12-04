@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "User";
+    ViewBag.Title = "role";
 }
 
 <div class="panel panel-default">
@@ -8,7 +8,7 @@
             <table class="table">
                 <tr>
                     <td>
-                        @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Search by Name"})
+                        @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Search by Name" })
                     </td>
                     <td>
                         <button type="button" id="btn-new" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
@@ -19,7 +19,7 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-12" id="user-list">
+            <div class="col-lg-12" id="role-list">
                 <h3>Loading...</h3>
             </div>
         </div>
@@ -49,10 +49,10 @@
 
         $("#btn-new").click(function () {
             $.ajax({
-                url: '@Url.Action("Create", "User")',
+                url: '@Url.Action("Create", "Role")',
                 type: 'get',
                 success: function (result) {
-                    $(".modal-title").html("Create New User");
+                    $(".modal-title").html("Create New Role");
                     $(".modal-body").html(result);
                     $(".modal").modal("show"); //class modal ditampilkan
                 },
@@ -64,15 +64,34 @@
 
         function GetList() {
             $.ajax({
-                url: '@Url.Action("List","User")',
+                url: '@Url.Action("List","Role")',
                 type: 'get',
                 success: function (result) {
-                    $("#user-list").html(result);
+                    $("#role-list").html(result);
                 },
                 error: function (err) {
-                    $("#user-list").html(err);
+                    $("#role-list").html(err);
                 }
             });
         }
+
+        $("#modal-edit").click(function () {
+
+        $.ajax({
+            url: '@Url.Action("Edit", "Role")',
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data successfully Updated!");
+                    $(".modal").modal("hide");
+                    GetList();
+                } else {
+                    alert("Error! " + result.message);
+                }
+            }
+        });
+        return false;
+    });
     </script>
 }

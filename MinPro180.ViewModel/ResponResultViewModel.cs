@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kitchen.ViewModel
+namespace MinPro180.ViewModel
 {
     public class ResponResultViewModel
     {

@@ -8,17 +8,17 @@ using MinPro180.ViewModel;
 
 namespace MinPro180.MVC.Controllers
 {
-    public class UserController : Controller
+    public class RoleController : Controller
     {
-        // GET: User
+        // GET: Role
         public ActionResult Index()
         {
-            return View(UserRepo.All());
+            return View(RoleRepo.All());
         }
         // List
         public ActionResult List()
         {
-            return PartialView("_List", UserRepo.All());
+            return PartialView("_List", RoleRepo.All());
         }
         //Create
         public ActionResult Create()
@@ -26,9 +26,9 @@ namespace MinPro180.MVC.Controllers
             return PartialView("_Create");
         }
         [HttpPost]
-        public ActionResult Create(UserViewModel model)
+        public ActionResult Create(RoleViewModel model)
         {
-            ResponResultViewModel result = UserRepo.Update(model);
+            ResponResultViewModel result = RoleRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
@@ -42,9 +42,9 @@ namespace MinPro180.MVC.Controllers
             return PartialView("_Edit");
         }
         [HttpPost]
-        public ActionResult Edit(UserViewModel model)
+        public ActionResult Edit(RoleViewModel model)
         {
-            ResponResultViewModel result = UserRepo.Update(model);
+            ResponResultViewModel result = RoleRepo.Update(model);
             return Json(new
             {
                 success = result.Success,

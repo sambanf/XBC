@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Kitchen.ViewModel;
 using MinPro180.DataModel;
 using MinPro180.ViewModel;
 
@@ -39,6 +38,7 @@ namespace MinPro180.Repository
             {
                 result = (from u in db.t_user
                           join r in db.t_role on u.role_id equals r.id
+                          where u.role_id == id
                           select new UserViewModel
                           {
                               id = u.id,

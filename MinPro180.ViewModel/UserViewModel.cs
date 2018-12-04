@@ -31,9 +31,12 @@ namespace MinPro180.ViewModel
         [Display(Name = "ROLE")]
         public long role_id { get; set; }
 
+        [Display(Name = "Mobile Flag")]
         public bool mobile_flag { get; set; }
 
+        [Display(Name = "Mobile Flag")]
         public long? mobile_token { get; set; }
+
         [Display(Name = "STATUS")]
         public bool active { get; set; }
     }
