@@ -287,10 +287,12 @@
     <Content Include="Views\Role\_Create.cshtml" />
     <Content Include="Views\Role\_Edit.cshtml" />
     <Content Include="Views\Role\_Deactive.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\_List.cshtml" />
+    <Content Include="Views\Menu\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
