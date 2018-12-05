@@ -37,9 +37,9 @@ namespace MinPro180.MVC.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
         //Edit
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return PartialView("_Edit");
+            return PartialView("_Edit",RoleRepo.GetRole(id));
         }
         [HttpPost]
         public ActionResult Edit(RoleViewModel model)

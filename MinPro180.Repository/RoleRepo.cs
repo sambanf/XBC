@@ -28,12 +28,13 @@ namespace MinPro180.Repository
             }
             return result;
         }
-        public static RoleViewModel GetUser(int id)
+        public static RoleViewModel GetRole(int id)
         {
             RoleViewModel result = new RoleViewModel();
             using (var db = new MinProContext())
             {
                 result = (from r in db.t_role
+                          where r.id == id
                           select new RoleViewModel
                           {
                               id = r.id,
@@ -57,7 +58,6 @@ namespace MinPro180.Repository
                     if (entity.id == 0)
                     {
                         t_role role = new t_role();
-                        role.id = entity.id;
                         role.code = entity.code;
                         role.name = entity.name;
                         role.description = entity.description;
@@ -76,7 +76,6 @@ namespace MinPro180.Repository
                         t_role role = db.t_role.Where(x => x.id == entity.id).FirstOrDefault();
                         if (role != null)
                         {
-                            role.id = entity.id;
                             role.code = entity.code;
                             role.name = entity.name;
                             role.description = entity.description;
@@ -96,6 +95,27 @@ namespace MinPro180.Repository
                 result.Message = e.Message;
             }
             return result;
+        }
+        public static string GetNewRole()
+        {
+            string newRole = String.Format("RO-");
+
+            using (var db = new MinProContext())
+            {
+                var result = (from u in db.t_user
+                              where u.username.Contains(newRole) //contains: check newRev ada atau tidak pada bulan dan tahun itu
+                              select new { username = u.username }).OrderByDescending(x => x.username).FirstOrDefault();
+                if (result != null)
+                {
+                    string[] lastRef = result.username.Split('-');
+                    newRole += (int.Parse(lastRef[2]) + 1).ToString("D3");
+                }
+                else
+                {
+                    newRole += "001";
+                }
+            }
+            return newRole;
         }
     }
 }

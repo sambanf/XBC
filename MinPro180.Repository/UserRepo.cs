@@ -38,7 +38,7 @@ namespace MinPro180.Repository
             {
                 result = (from u in db.t_user
                           join r in db.t_role on u.role_id equals r.id
-                          where u.role_id == id
+                          where u.id == id
                           select new UserViewModel
                           {
                               id = u.id,
@@ -48,6 +48,7 @@ namespace MinPro180.Repository
                               mobile_flag = u.mobile_flag,
                               mobile_token = u.mobile_token,
                               active = u.active
+
                           }).FirstOrDefault();
             }
             return result;
@@ -64,7 +65,6 @@ namespace MinPro180.Repository
                     if (entity.id == 0)
                     {
                         t_user user = new t_user();
-                        user.id = entity.id;
                         user.username = entity.username;
                         user.password = entity.password;
                         user.role_id = entity.role_id;
@@ -84,7 +84,6 @@ namespace MinPro180.Repository
                         t_user user = db.t_user.Where(x => x.id == entity.id).FirstOrDefault();
                         if (user != null)
                         {
-                            user.id = entity.id;
                             user.username = entity.username;
                             user.password = entity.password;
                             user.role_id = entity.role_id;

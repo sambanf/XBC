@@ -8,7 +8,7 @@
             <table class="table">
                 <tr>
                     <td>
-                        @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Search by Name"})
+                        @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Search by Name" })
                     </td>
                     <td>
                         <button type="button" id="btn-new" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
@@ -74,5 +74,20 @@
                 }
             });
         }
+          $("#user-list").on("click", ".btn-edit", function () {
+            $.ajax({
+                url: '@Url.Action("Edit", "User")',
+                type: 'get',
+                data: { id: $(this).attr("data-id") },
+                success: function (result) {
+                    $(".modal-title").html("Edit User");
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show");
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        });
     </script>
 }

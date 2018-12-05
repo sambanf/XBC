@@ -11,7 +11,9 @@
                         @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Search by Name" })
                     </td>
                     <td>
-                        <button type="button" id="btn-new" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
+                        <button type="button" id="btn-new" class="btn btn-success btn-sm">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        </button>
                     </td>
                 </tr>
             </table>
@@ -74,24 +76,20 @@
                 }
             });
         }
-
-        $("#modal-edit").click(function () {
-
-        $.ajax({
-            url: '@Url.Action("Edit", "Role")',
-            type: this.method,
-            data: $(this).serialize(),
-            success: function (result) {
-                if (result.success) {
-                    alert("Data successfully Updated!");
-                    $(".modal").modal("hide");
-                    GetList();
-                } else {
-                    alert("Error! " + result.message);
+        $("#role-list").on("click", ".btn-edit", function () {
+            $.ajax({
+                url: '@Url.Action("Edit", "Role")',
+                type: 'get',
+                data: { id: $(this).attr("data-id") },
+                success: function (result) {
+                    $(".modal-title").html("Edit Role");
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show");
+                },
+                error: function (err) {
+                    alert(err);
                 }
-            }
+            });
         });
-        return false;
-    });
     </script>
 }

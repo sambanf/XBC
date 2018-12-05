@@ -1,6 +1,5 @@
 ﻿@model MinPro180.ViewModel.RoleViewModel
 
-
 @using (Html.BeginForm("Edit", "Role", FormMethod.Post, new { id = "edit-form", name = "edit-form" }))
 {
     @Html.AntiForgeryToken()
@@ -48,9 +47,8 @@
 
 <script type="text/javascript">
     $("#edit-form").submit(function () {
-
         $.ajax({
-            url: '@Url.Action("edit", "Role")',
+            url: '@Url.Action("Edit", "Role")',
             type: this.method,
             data: $(this).serialize(),
             success: function (result) {

@@ -27,18 +27,24 @@
                 @Html.DisplayFor(modelItem => item.active)
             </td>
             <td>
-                @* Dropdwon button *@
-                <div class="dropdown">
-                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                        @*<span class="caret"></span>*@
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-warning btn-edit" data-id="@item.id" title="Edit">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        @*<li class="li-delete" data-id="@item.id"><a href="#">Delete</a></li>*@
-                        <li><a href="@Url.Action("Edit")">Edit</a></li>
-                        <li><a href="#">Deactive</a></li>
-                    </ul>
+                    <button type="button" class="btn btn-danger btn-delete" data-id="@item.id" title="Delete">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
                 </div>
+                @* Dropdwon button *@
+                @*<div class="dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="@Url.Action("Edit")">Edit</a></li>
+                <li><a href="#">Deactive</a></li>
+            </ul>
+        </div>*@
             </td>
 
         </tr>
