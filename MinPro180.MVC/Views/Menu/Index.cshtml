@@ -10,7 +10,7 @@
         <table class="table">
             <tr>
                 <td>
-                    @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Search by Name" })
+                    @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Search by Title" })
                 </td>
                 <td>
                     <button type="button" id="btn-new" class="btn btn-success btn-sm">
@@ -28,7 +28,7 @@
 </div>
 
 @* modal pop up *@
-<div class="modal fade" tabindex="-1" role="dialog">
+<div class="modal fade" tabindex="-1" role="dialog" width="500">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

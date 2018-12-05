@@ -37,7 +37,7 @@ namespace MinPro180.ViewModel
         [Display(Name = "MENU ORDER")]
         public int menu_order { get; set; }
 
-        [Display(Name = "MENU PARENT")]
+        [Display(Name = "PARENT")]
         public long? menu_parent { get; set; }
 
         [Display(Name = "MENU URL")]

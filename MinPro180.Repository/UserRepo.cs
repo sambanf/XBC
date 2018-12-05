@@ -10,25 +10,41 @@ namespace MinPro180.Repository
 {
     public class UserRepo
     {
-        public static List<UserViewModel> All()
+        public static List<UserViewModel> All(string searchString)
         {
             List<UserViewModel> result = new List<UserViewModel>();
             using (var db = new MinProContext())
             {
-                result = (from u in db.t_user
-                          join r in db.t_role on u.role_id equals r.id
-                          select new UserViewModel
-                          {
-                              id = u.id,
-                              username = u.username,
-                              password = u.password,
-                              role_id = r.id,
-                              role_name = r.name,
-                              mobile_flag = u.mobile_flag,
-                              mobile_token = u.mobile_token,
-                              active = u.active
+                if (String.IsNullOrEmpty(searchString))
+                {
+                    result = (from u in db.t_user
+                              join r in db.t_role on u.role_id equals r.id
+                              select new UserViewModel
+                              {
+                                  id = u.id,
+                                  username = u.username,
+                                  password = u.password,
+                                  role_id = r.id,
+                                  role_name = r.name,
+                                  mobile_flag = u.mobile_flag,
+                                  mobile_token = u.mobile_token,
+                                  active = u.active
 
-                          }).ToList();
+                              }).ToList();
+                }
+                else
+                {
+                    var src = from s in db.t_user
+                             where s.active == true
+                             select new UserViewModel
+                             {
+                                 id = s.id,
+                                 username = s.username
+                             };
+                    src = src.Where(s => s.username.Contains(searchString));
+                    result = src.ToList();
+                }
+
             }
             return result;
         }

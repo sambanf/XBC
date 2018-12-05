@@ -51,6 +51,7 @@ namespace MinPro180.Repository
         {
             //untuk create & edit
             ResponResultViewModel result = new ResponResultViewModel();
+            entity.code = GetNewRole();
             try
             {
                 using (var db = new MinProContext())
@@ -102,12 +103,12 @@ namespace MinPro180.Repository
 
             using (var db = new MinProContext())
             {
-                var result = (from u in db.t_user
-                              where u.username.Contains(newRole) //contains: check newRev ada atau tidak pada bulan dan tahun itu
-                              select new { username = u.username }).OrderByDescending(x => x.username).FirstOrDefault();
+                var result = (from r in db.t_role
+                              where r.code.Contains(newRole) //contains: check newRev ada atau tidak pada bulan dan tahun itu
+                              select new { code = r.code }).OrderByDescending(x => x.code).FirstOrDefault();
                 if (result != null)
                 {
-                    string[] lastRef = result.username.Split('-');
+                    string[] lastRef = result.code.Split();
                     newRole += (int.Parse(lastRef[2]) + 1).ToString("D3");
                 }
                 else

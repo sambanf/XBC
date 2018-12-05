@@ -23,13 +23,13 @@ namespace MinPro180.MVC.Controllers
         //Create
         public ActionResult Create()
         {
-            ViewBag.ListMenu = new SelectList(MenuRepo.All(), "menu_parent");//untuk dropdownlist
+            ViewBag.ListMenu = new SelectList(MenuRepo.All(), "id","title");//untuk dropdownlist
             return PartialView("_Create");
         }
         [HttpPost]
         public ActionResult Create(MenuViewModel model)
         {
-            ViewBag.ListMenu = new SelectList(MenuRepo.All(), "menu_parent");//untuk dropdownlist
+            ViewBag.ListMenu = new SelectList(MenuRepo.All(),"id", "title");//untuk dropdownlist
             ResponResultViewModel result = MenuRepo.Update(model);
             return Json(new
             {
@@ -41,13 +41,13 @@ namespace MinPro180.MVC.Controllers
         //Edit
         public ActionResult Edit(int id)
         {
-            ViewBag.ListMenu = new SelectList(MenuRepo.All(), "menu_parent");//untuk dropdownlist
+            ViewBag.ListMenu = new SelectList(MenuRepo.All(),"id", "tilte");//untuk dropdownlist
             return PartialView("_Edit", MenuRepo.GetMenu(id));
         }
         [HttpPost]
         public ActionResult Edit(MenuViewModel model)
         {
-            ViewBag.ListMenu = new SelectList(MenuRepo.All(), "menu_parent");//untuk dropdownlist
+            ViewBag.ListMenu = new SelectList(MenuRepo.All(),"id", "title");//untuk dropdownlist
             ResponResultViewModel result = MenuRepo.Update(model);
             return Json(new
             {

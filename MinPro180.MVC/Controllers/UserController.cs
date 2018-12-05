@@ -11,14 +11,14 @@ namespace MinPro180.MVC.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            return View(UserRepo.All());
+            return View(UserRepo.All(search));
         }
         // List
-        public ActionResult List()
+        public ActionResult List(string search)
         {
-            return PartialView("_List", UserRepo.All());
+            return PartialView("_List", UserRepo.All(search));
         }
         //Create
         public ActionResult Create()
