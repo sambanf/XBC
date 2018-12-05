@@ -99,7 +99,7 @@ namespace MinPro180.Repository
         }
         public static string GetNewRole()
         {
-            string newRole = String.Format("RO-");
+            string newRole = String.Format("RO");
 
             using (var db = new MinProContext())
             {

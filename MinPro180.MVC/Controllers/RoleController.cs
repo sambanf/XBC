@@ -23,6 +23,8 @@ namespace MinPro180.MVC.Controllers
         //Create
         public ActionResult Create()
         {
+            //var code = new RoleViewModel();
+            //code.code = RoleRepo.GetNewRole();
             return PartialView("_Create");
         }
         [HttpPost]
