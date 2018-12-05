@@ -19,9 +19,9 @@ namespace MinPro180.Repository
                           select new RoleViewModel
                           {
                               id = r.id,
-                              code=r.code,
-                              name=r.name,
-                              description=r.description,
+                              code = r.code,
+                              name = r.name,
+                              description = r.description,
                               active = r.active
 
                           }).ToList();

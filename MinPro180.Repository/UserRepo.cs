@@ -19,13 +19,14 @@ namespace MinPro180.Repository
                           join r in db.t_role on u.role_id equals r.id
                           select new UserViewModel
                           {
-                              id=u.id,
-                              username=u.username,
-                              password=u.password,
-                              role_id=r.id,
-                              mobile_flag=u.mobile_flag,
-                              mobile_token=u.mobile_token,
-                              active=u.active
+                              id = u.id,
+                              username = u.username,
+                              password = u.password,
+                              role_id = r.id,
+                              role_name = r.name,
+                              mobile_flag = u.mobile_flag,
+                              mobile_token = u.mobile_token,
+                              active = u.active
 
                           }).ToList();
             }
