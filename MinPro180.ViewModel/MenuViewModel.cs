@@ -16,7 +16,6 @@ namespace MinPro180.ViewModel
         public long id { get; set; }
 
         [Display(Name ="CODE")]
-        [Required]
         [StringLength(50)]
         public string code { get; set; }
 
