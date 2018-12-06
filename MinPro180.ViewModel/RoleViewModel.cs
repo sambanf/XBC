@@ -31,5 +31,20 @@ namespace MinPro180.ViewModel
 
         [Display(Name = "STATUS")]
         public bool active { get; set; }
+
+        public string status
+        {
+            get
+            {
+                if (active == true)
+                {
+                    return "Active";
+                }
+                else
+                {
+                    return "Deactive";
+                }
+            }
+        }
     }
 }

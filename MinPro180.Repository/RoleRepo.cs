@@ -77,7 +77,6 @@ namespace MinPro180.Repository
                         t_role role = db.t_role.Where(x => x.id == entity.id).FirstOrDefault();
                         if (role != null)
                         {
-                            role.code = entity.code;
                             role.name = entity.name;
                             role.description = entity.description;
                             role.modified_by = entity.id;

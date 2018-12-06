@@ -77,6 +77,7 @@ namespace MinPro180.Repository
                         menu.menu_url = entity.menu_url;
                         menu.created_by = entity.id;
                         menu.created_on = DateTime.Now;
+                        menu.active = entity.active;
 
                         db.t_menu.Add(menu);
                         db.SaveChanges();
@@ -89,7 +90,6 @@ namespace MinPro180.Repository
                         t_menu menu = db.t_menu.Where(x => x.id == entity.id).FirstOrDefault();
                         if (menu != null)
                         {
-                            menu.code = entity.code;
                             menu.title = entity.title;
                             menu.description = entity.description;
                             menu.image_url = entity.image_url;
@@ -98,6 +98,7 @@ namespace MinPro180.Repository
                             menu.menu_url = entity.menu_url;
                             menu.created_by = entity.id;
                             menu.created_on = DateTime.Now;
+                            menu.active = entity.active;
 
                             db.SaveChanges();
                             result.Entity = entity;
