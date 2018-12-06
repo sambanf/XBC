@@ -60,6 +60,7 @@ namespace MinPro180.Repository
         {
             //untuk create & edit
             ResponResultViewModel result = new ResponResultViewModel();
+            entity.code = GetNewMenu();
             try
             {
                 using (var db = new MinProContext())
@@ -110,6 +111,27 @@ namespace MinPro180.Repository
                 result.Message = e.Message;
             }
             return result;
+        }
+        public static string GetNewMenu()
+        {
+            string newMenu = String.Format("M");
+
+            using (var db = new MinProContext())
+            {
+                var result = (from m in db.t_menu
+                              where m.code.Contains(newMenu) //contains: check newRev ada atau tidak pada bulan dan tahun itu
+                              select new { Code = m.code }).OrderByDescending(x => x.Code).FirstOrDefault();
+                if (result != null)
+                {
+                    string[] lastRef = result.Code.Split('M');
+                    newMenu += (int.Parse(lastRef[1]) + 1).ToString("D4");
+                }
+                else
+                {
+                    newMenu += "0001";
+                }
+            }
+            return newMenu;
         }
     }
 }

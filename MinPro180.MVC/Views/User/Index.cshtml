@@ -90,5 +90,19 @@
                 }
             });
         });
+
+        $("#user-list").on("click", ".btn-delete", function () {
+        $.ajax({
+            url: '@Url.Action("Deactive", "User")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $(".modal-title").html("Deactivate User?");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+            }
+        })
+    })
+
     </script>
 }

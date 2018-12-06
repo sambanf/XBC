@@ -35,12 +35,12 @@ namespace MinPro180.Repository
                 else
                 {
                     var src = from s in db.t_user
-                             where s.active == true
-                             select new UserViewModel
-                             {
-                                 id = s.id,
-                                 username = s.username
-                             };
+                              where s.active == true
+                              select new UserViewModel
+                              {
+                                  id = s.id,
+                                  username = s.username
+                              };
                     src = src.Where(s => s.username.Contains(searchString));
                     result = src.ToList();
                 }
@@ -89,6 +89,7 @@ namespace MinPro180.Repository
                         user.mobile_token = entity.mobile_token;
                         user.created_by = entity.id;
                         user.created_on = DateTime.Now;
+                        user.active = entity.active;
 
                         db.t_user.Add(user);
                         db.SaveChanges();
@@ -108,6 +109,7 @@ namespace MinPro180.Repository
                             user.mobile_token = entity.mobile_token;
                             user.modified_by = entity.id;
                             user.modified_on = DateTime.Now;
+                            user.active = entity.active;
 
                             db.SaveChanges();
                             result.Entity = entity;
@@ -122,5 +124,45 @@ namespace MinPro180.Repository
             }
             return result;
         }
+
+        public static ResponResultViewModel Update2(UserViewModel entity)
+        {
+            //untuk create dan edit
+            ResponResultViewModel result = new ResponResultViewModel();
+            try
+            {
+                using (var db = new MinProContext())
+                {
+                    t_user user = db.t_user.Where(x => x.id == entity.id).FirstOrDefault();
+                    if (user != null)
+                    {
+                        user.username = entity.username;
+                        user.password = entity.password;
+                        user.role_id = entity.role_id;
+                        user.mobile_flag = entity.mobile_flag;
+                        user.mobile_token = entity.mobile_token;
+                        user.modified_by = entity.id;
+                        user.modified_on = DateTime.Now;
+                        user.active = false;
+
+                        db.SaveChanges();
+                        result.Entity = entity;
+                    }
+                    else
+                    {
+                        result.Success = false;
+                        result.Message = "user not found!";
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.Message = e.Message;
+            }
+            return result;
+        }
+
     }
 }

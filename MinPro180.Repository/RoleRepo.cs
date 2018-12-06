@@ -105,11 +105,11 @@ namespace MinPro180.Repository
             {
                 var result = (from r in db.t_role
                               where r.code.Contains(newRole) //contains: check newRev ada atau tidak pada bulan dan tahun itu
-                              select new { code = r.code }).OrderByDescending(x => x.code).FirstOrDefault();
+                              select new { Code = r.code }).OrderByDescending(x => x.Code).FirstOrDefault();
                 if (result != null)
                 {
-                    string[] lastRef = result.code.Split();
-                    newRole += (int.Parse(lastRef[2]) + 1).ToString("D3");
+                    string[] lastRef = result.Code.Split('O');
+                    newRole += (int.Parse(lastRef[1]) + 1).ToString("D3");
                 }
                 else
                 {
