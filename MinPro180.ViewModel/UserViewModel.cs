@@ -12,7 +12,6 @@ namespace MinPro180.ViewModel
         public UserViewModel()
         {
             active = true;
-            mobile_flag = true;
         }
         public long id { get; set; }
         [Required]

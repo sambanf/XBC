@@ -19,6 +19,7 @@ namespace MinPro180.Repository
                 {
                     result = (from u in db.t_user
                               join r in db.t_role on u.role_id equals r.id
+                              where u.active == true
                               select new UserViewModel
                               {
                                   id = u.id,
@@ -136,13 +137,6 @@ namespace MinPro180.Repository
                     t_user user = db.t_user.Where(x => x.id == entity.id).FirstOrDefault();
                     if (user != null)
                     {
-                        user.username = entity.username;
-                        user.password = entity.password;
-                        user.role_id = entity.role_id;
-                        user.mobile_flag = entity.mobile_flag;
-                        user.mobile_token = entity.mobile_token;
-                        user.modified_by = entity.id;
-                        user.modified_on = DateTime.Now;
                         user.active = false;
 
                         db.SaveChanges();

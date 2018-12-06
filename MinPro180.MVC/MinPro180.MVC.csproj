@@ -291,6 +291,7 @@
     <Content Include="Views\Menu\_List.cshtml" />
     <Content Include="Views\Menu\_Create.cshtml" />
     <Content Include="Views\User\_Deactive.cshtml" />
+    <Content Include="Views\Menu\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

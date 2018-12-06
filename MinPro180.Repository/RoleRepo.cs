@@ -16,6 +16,7 @@ namespace MinPro180.Repository
             using (var db = new MinProContext())
             {
                 result = (from r in db.t_role
+                          where r.active == true
                           select new RoleViewModel
                           {
                               id = r.id,
