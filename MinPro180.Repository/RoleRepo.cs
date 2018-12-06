@@ -97,6 +97,37 @@ namespace MinPro180.Repository
             }
             return result;
         }
+        public static ResponResultViewModel Deactive(RoleViewModel entity)
+        {
+            //untuk deactive
+            ResponResultViewModel result = new ResponResultViewModel();
+            try
+            {
+                using (var db = new MinProContext())
+                {
+                    t_role role = db.t_role.Where(x => x.id == entity.id).FirstOrDefault();
+                    if (role != null)
+                    {
+                        role.active = false;
+
+                        db.SaveChanges();
+                        result.Entity = entity;
+                    }
+                    else
+                    {
+                        result.Success = false;
+                        result.Message = "user not found!";
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.Message = e.Message;
+            }
+            return result;
+        }
         public static string GetNewRole()
         {
             string newRole = String.Format("RO");

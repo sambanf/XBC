@@ -91,5 +91,18 @@
                 }
             });
         });
+
+        $("#role-list").on("click", ".btn-delete", function () {
+            $.ajax({
+                url: '@Url.Action("Deactive", "Role")',
+                type: 'get',
+                data: { id: $(this).attr("data-id") },
+                success: function (result) {
+                    $(".modal-title").html("Deactivate Role?");
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show");
+                }
+            });
+        });
     </script>
 }

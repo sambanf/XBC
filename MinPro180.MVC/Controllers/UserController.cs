@@ -63,7 +63,7 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Deactive(UserViewModel model)
         {
-            ResponResultViewModel result = UserRepo.Update2(model);
+            ResponResultViewModel result = UserRepo.Deactive(model);
             return Json(new
             {
                 success = result.Success,
@@ -71,6 +71,5 @@ namespace MinPro180.MVC.Controllers
                 entity = result.Entity
             }, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

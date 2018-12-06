@@ -126,9 +126,9 @@ namespace MinPro180.Repository
             return result;
         }
 
-        public static ResponResultViewModel Update2(UserViewModel entity)
+        public static ResponResultViewModel Deactive(UserViewModel entity)
         {
-            //untuk create dan edit
+            //untuk deactive
             ResponResultViewModel result = new ResponResultViewModel();
             try
             {

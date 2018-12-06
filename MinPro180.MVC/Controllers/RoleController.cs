@@ -54,5 +54,20 @@ namespace MinPro180.MVC.Controllers
                 entity = result.Entity
             }, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Deactive(int id)
+        {
+            return PartialView("_Deactive", RoleRepo.GetRole(id));
+        }
+        [HttpPost]
+        public ActionResult Deactive(RoleViewModel model)
+        {
+            ResponResultViewModel result = RoleRepo.Deactive(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

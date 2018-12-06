@@ -12,8 +12,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.active, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                    @Html.EditorFor(model => model.status)
-                    @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
+                 @Html.EditorFor(model => model.status)
+                 @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -25,7 +25,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 }
 
