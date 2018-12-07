@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoginViewModelcs.cs" />
     <Compile Include="MenuViewModel.cs" />
     <Compile Include="ResponResultViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

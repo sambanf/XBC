@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoginRepo.cs" />
     <Compile Include="MenuRepo.cs" />
     <Compile Include="RoleRepo.cs" />
     <Compile Include="UserRepo.cs" />
