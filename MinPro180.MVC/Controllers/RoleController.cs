@@ -11,20 +11,18 @@ namespace MinPro180.MVC.Controllers
     public class RoleController : Controller
     {
         // GET: Role
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            return View(RoleRepo.All());
+            return View(RoleRepo.All(search));
         }
         // List
-        public ActionResult List()
+        public ActionResult List(string search)
         {
-            return PartialView("_List", RoleRepo.All());
+            return PartialView("_List", RoleRepo.All(search));
         }
         //Create
         public ActionResult Create()
         {
-            //var code = new RoleViewModel();
-            //code.code = RoleRepo.GetNewRole();
             return PartialView("_Create");
         }
         [HttpPost]

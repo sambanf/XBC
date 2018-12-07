@@ -23,13 +23,13 @@ namespace MinPro180.MVC.Controllers
         //Create
         public ActionResult Create()
         {
-            ViewBag.ListRole = new SelectList(RoleRepo.All(), "id", "name");//untuk dropdownlist
+            ViewBag.ListRole = new SelectList(RoleRepo.All(null), "id", "name");//untuk dropdownlist
             return PartialView("_Create");
         }
         [HttpPost]
         public ActionResult Create(UserViewModel model)
         {
-            ViewBag.ListRole = new SelectList(RoleRepo.All(), "id", "name");//untuk dropdownlist
+            ViewBag.ListRole = new SelectList(RoleRepo.All(null), "id", "name");//untuk dropdownlist
             ResponResultViewModel result = UserRepo.Update(model);
             return Json(new
             {
@@ -41,13 +41,13 @@ namespace MinPro180.MVC.Controllers
         //Edit
         public ActionResult Edit(int id)
         {
-            ViewBag.ListRole = new SelectList(RoleRepo.All(), "id", "name");//untuk dropdownlist
+            ViewBag.ListRole = new SelectList(RoleRepo.All(null), "id", "name");//untuk dropdownlist
             return PartialView("_Edit", UserRepo.GetUser(id));
         }
         [HttpPost]
         public ActionResult Edit(UserViewModel model)
         {
-            ViewBag.ListRole = new SelectList(RoleRepo.All(), "id", "name");//untuk dropdownlist
+            ViewBag.ListRole = new SelectList(RoleRepo.All(null), "id", "name");//untuk dropdownlist
             ResponResultViewModel result = UserRepo.Update(model);
             return Json(new
             {

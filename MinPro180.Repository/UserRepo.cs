@@ -35,12 +35,19 @@ namespace MinPro180.Repository
                 }
                 else
                 {
-                    var src = from s in db.t_user
-                              where s.active == true
+                    var src = from u in db.t_user
+                              join r in db.t_role on u.role_id equals r.id
+                               where u.active == true
                               select new UserViewModel
                               {
-                                  id = s.id,
-                                  username = s.username
+                                  id = u.id,
+                                  username = u.username,
+                                  password = u.password,
+                                  role_id = r.id,
+                                  role_name = r.name,
+                                  mobile_flag = u.mobile_flag,
+                                  mobile_token = u.mobile_token,
+                                  active = u.active
                               };
                     src = src.Where(s => s.username.Contains(searchString));
                     result = src.ToList();

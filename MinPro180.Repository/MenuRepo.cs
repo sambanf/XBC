@@ -10,12 +10,15 @@ namespace MinPro180.Repository
 {
     public class MenuRepo
     {
-        public static List<MenuViewModel> All()
+        public static List<MenuViewModel> All(string searchString)
         {
             List<MenuViewModel> result = new List<MenuViewModel>();
             using (var db = new MinProContext())
             {
-                result = (from m in db.t_menu
+                if (String.IsNullOrEmpty(searchString))
+                {
+                    result = (from m in db.t_menu
+                          where m.active == true
                           select new MenuViewModel
                           {
                               id = m.id,
@@ -29,6 +32,27 @@ namespace MinPro180.Repository
                               active = m.active
 
                           }).ToList();
+                }
+                else
+                {
+                    var src = from m in db.t_menu
+                              where m.active == true
+                              select new MenuViewModel
+                              {
+                                  id = m.id,
+                                  code = m.code,
+                                  title = m.title,
+                                  description = m.description,
+                                  image_url = m.image_url,
+                                  menu_order = m.menu_order,
+                                  menu_parent = m.menu_parent,
+                                  menu_url = m.menu_url,
+                                  active = m.active
+
+                              };
+                    src = src.Where(s => s.title.Contains(searchString));
+                    result = src.ToList();
+                }
             }
             return result;
         }
@@ -103,6 +127,36 @@ namespace MinPro180.Repository
                             db.SaveChanges();
                             result.Entity = entity;
                         }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.Message = e.Message;
+            }
+            return result;
+        }
+        public static ResponResultViewModel Deactive(MenuViewModel entity)
+        {
+            //untuk deactive
+            ResponResultViewModel result = new ResponResultViewModel();
+            try
+            {
+                using (var db = new MinProContext())
+                {
+                    t_menu menu = db.t_menu.Where(x => x.id == entity.id).FirstOrDefault();
+                    if (menu != null)
+                    {
+                        menu.active = false;
+
+                        db.SaveChanges();
+                        result.Entity = entity;
+                    }
+                    else
+                    {
+                        result.Success = false;
+                        result.Message = "user not found!";
                     }
                 }
             }

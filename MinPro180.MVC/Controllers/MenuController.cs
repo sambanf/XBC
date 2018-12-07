@@ -11,25 +11,25 @@ namespace MinPro180.MVC.Controllers
     public class MenuController : Controller
     {
         // GET: Menu
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            return View(MenuRepo.All());
+            return View(MenuRepo.All(search));
         }
         // List
-        public ActionResult List()
+        public ActionResult List(string search)
         {
-            return PartialView("_List", MenuRepo.All());
+            return PartialView("_List", MenuRepo.All(search));
         }
         //Create
         public ActionResult Create()
         {
-            ViewBag.ListMenu = new SelectList(MenuRepo.All(), "id","title");//untuk dropdownlist
+            ViewBag.ListMenu = new SelectList(MenuRepo.All(null), "id","title");//untuk dropdownlist
             return PartialView("_Create");
         }
         [HttpPost]
         public ActionResult Create(MenuViewModel model)
         {
-            ViewBag.ListMenu = new SelectList(MenuRepo.All(), "id", "title");//untuk dropdownlist
+            ViewBag.ListMenu = new SelectList(MenuRepo.All(null), "id", "title");//untuk dropdownlist
             ResponResultViewModel result = MenuRepo.Update(model);
             return Json(new
             {
@@ -41,14 +41,29 @@ namespace MinPro180.MVC.Controllers
         //Edit
         public ActionResult Edit(int id)
         {
-            ViewBag.ListMenu = new SelectList(MenuRepo.All(),"id", "title");//untuk dropdownlist
+            ViewBag.ListMenu = new SelectList(MenuRepo.All(null),"id", "title");//untuk dropdownlist
             return PartialView("_Edit", MenuRepo.GetMenu(id));
         }
         [HttpPost]
         public ActionResult Edit(MenuViewModel model)
         {
-            ViewBag.ListMenu = new SelectList(MenuRepo.All(), "id", "title");//untuk dropdownlist
+            ViewBag.ListMenu = new SelectList(MenuRepo.All(null), "id", "title");//untuk dropdownlist
             ResponResultViewModel result = MenuRepo.Update(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            }, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Deactive(int id)
+        {
+            return PartialView("_Deactive", MenuRepo.GetMenu(id));
+        }
+        [HttpPost]
+        public ActionResult Deactive(MenuViewModel model)
+        {
+            ResponResultViewModel result = MenuRepo.Deactive(model);
             return Json(new
             {
                 success = result.Success,

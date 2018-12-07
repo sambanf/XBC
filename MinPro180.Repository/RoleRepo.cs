@@ -10,12 +10,14 @@ namespace MinPro180.Repository
 {
     public class RoleRepo
     {
-        public static List<RoleViewModel> All()
+        public static List<RoleViewModel> All(string searchString)
         {
             List<RoleViewModel> result = new List<RoleViewModel>();
             using (var db = new MinProContext())
             {
-                result = (from r in db.t_role
+                if (String.IsNullOrEmpty(searchString))
+                {
+                    result = (from r in db.t_role
                           where r.active == true
                           select new RoleViewModel
                           {
@@ -26,6 +28,23 @@ namespace MinPro180.Repository
                               active = r.active
 
                           }).ToList();
+                }
+                else
+                {
+                    var src = from r in db.t_role
+                              where r.active == true
+                              select new RoleViewModel
+                              {
+                                  id = r.id,
+                                  code = r.code,
+                                  name = r.name,
+                                  description = r.description,
+                                  active = r.active
+
+                              };
+                    src = src.Where(s => s.code.Contains(searchString));
+                    result = src.ToList();
+                }
             }
             return result;
         }
@@ -118,7 +137,6 @@ namespace MinPro180.Repository
                         result.Success = false;
                         result.Message = "user not found!";
                     }
-
                 }
             }
             catch (Exception e)

@@ -11,6 +11,11 @@
             <tr>
                 <td>
                     @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Search by Username" })
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-warning btn-src">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
                 </td>
                 <td>
                     <button type="button" id="btn-new" class="btn btn-success btn-sm">
@@ -67,6 +72,7 @@
             $.ajax({
                 url: '@Url.Action("List","User")',
                 type: 'get',
+                data: { search: $("#name").val() },
                 success: function (result) {
                     $("#user-list").html(result);
                 },
@@ -91,7 +97,7 @@
             });
         });
 
-        $("#user-list").on("click", ".btn-delete", function () {
+        $("#user-list").on("click", ".btn-deactive", function () {
             $.ajax({
                 url: '@Url.Action("Deactive", "User")',
                 type: 'get',
@@ -103,6 +109,17 @@
                 }
             });
         });
+
+        $(".btn-src").click(function () {
+        $.ajax({
+            url: '@Url.Action("List", "User")',
+            type: 'get',
+            data: { search: $("#name").val()},
+            success: function (result) {
+                GetList();
+            }
+            });
+        })
 
     </script>
 }
