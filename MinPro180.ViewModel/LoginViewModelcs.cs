@@ -9,7 +9,6 @@ namespace MinPro180.ViewModel
 {
     public class LoginViewModelcs
     {
-        public long id { get; set; }
         [Required]
         [StringLength(50)]
         [Display(Name = "USERNAME")]

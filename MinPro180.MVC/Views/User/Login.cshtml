@@ -1,0 +1,64 @@
+﻿@model MinPro180.ViewModel.LoginViewModelcs
+@{
+    ViewBag.Title = "Login";
+    ViewBag.Task = "Login to Start Your Session";
+}
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group has-feedback">
+        @Html.TextBoxFor(m => m.username, new { @class = "form-control ", @placeholder = "Username" })
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        @Html.ValidationMessageFor(m => m.username, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group has-feedback">
+        @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "Password" })
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        @Html.ValidationMessageFor(m => m.password, "", new { @class = "text-danger" })
+    </div>
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="checkbox icheck">
+                <label>
+                    <input type="checkbox"> Remember Me
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+            @Html.ActionLink("Forgot Password ?", "ForgotPassword")
+        </div>
+        <div class="col-xs-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+        </div>
+    </div>
+
+
+    @* Enable this once you have account confirmation enabled for password reset functionality
+        <p>
+            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+        </p>*@
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' /* optional */
+            });
+        });
+    </script>
+}

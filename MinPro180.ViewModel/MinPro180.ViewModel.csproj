@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ForgotPasswordViewModel.cs" />
     <Compile Include="LoginViewModelcs.cs" />
     <Compile Include="MenuViewModel.cs" />
     <Compile Include="ResponResultViewModel.cs" />
