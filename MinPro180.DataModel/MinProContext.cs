@@ -12,6 +12,7 @@ namespace MinPro180.DataModel
         {
         }
 
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<t_assignment> t_assignment { get; set; }
         public virtual DbSet<t_audit_log> t_audit_log { get; set; }
         public virtual DbSet<t_batch> t_batch { get; set; }

@@ -42,12 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="FeedbackViewModel.cs" />
     <Compile Include="TestViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionViewModel.cs" />
     <Compile Include="VDetailViewModel.cs" />
     <Compile Include="VersionViewModel.cs" />
+=======
+    <Compile Include="ForgotPasswordViewModel.cs" />
+    <Compile Include="LoginViewModelcs.cs" />
+    <Compile Include="MenuViewModel.cs" />
+    <Compile Include="ResponResultViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleViewModel.cs" />
+    <Compile Include="UserViewModel.cs" />
+>>>>>>> 9f367eb241eb58c3e49c1aa9955e0640a6b7039d
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

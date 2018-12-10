@@ -21,7 +21,7 @@ namespace MinPro180.MVC.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("MinProContext", throwIfV1Schema: false)
         {
         }
 
