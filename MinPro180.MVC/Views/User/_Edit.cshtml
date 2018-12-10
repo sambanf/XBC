@@ -2,7 +2,6 @@
 
 @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { id = "edit-form", name = "edit-form" }))
 {
-    @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.id)
 
     <div class="form-horizontal">

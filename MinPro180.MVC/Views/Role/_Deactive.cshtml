@@ -3,8 +3,6 @@
 
 @using (Html.BeginForm("Deactive", "Role", FormMethod.Post, new { id = "edit-form", name = "edit-form" }))
 {
-    @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
