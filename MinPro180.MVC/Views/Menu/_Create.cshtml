@@ -3,7 +3,6 @@
 
 @using (Html.BeginForm("Create", "Menu", FormMethod.Post, new { id = "create-form", name = "create-form" }))
 {
-    @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.id)
     <div class="form-horizontal">
 

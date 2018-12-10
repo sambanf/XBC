@@ -7,27 +7,25 @@
         <h1>Role</h1>
     </div>
     <div class="panel-body">
-        <table class="table">
-            <tr>
-                <td>
-                    @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Search by Code" })
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-warning btn-src">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </td>
-                <td>
-                    <button type="button" id="btn-new" class="btn btn-success btn-sm">
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <input type="text" class="form-control" id="name" placeholder="Search by Code"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-warning btn-src">
+                        <span class="glyphicon glyphicon-search"></span>
                     </button>
-                </td>
-            </tr>
-        </table>
-        <div class="row">
-            <div class="col-lg-12" id="role-list">
-                <h3>Loading...</h3>
+                </span>
             </div>
+        </div>
+        <div class="col-lg-2 col-lg-offset-7">
+            <button type="button" id="btn-new" class="btn btn-warning">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12" id="role-list">
+            <h3>Loading...</h3>
         </div>
     </div>
 </div>

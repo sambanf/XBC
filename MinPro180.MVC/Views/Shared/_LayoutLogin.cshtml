@@ -16,15 +16,20 @@
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo">
-            <b>MinPro</b>
+        <div class="row">
+            <div class="login-logo col-lg-3 col-lg-offset-2">
+                <b>MinPro</b>
+            </div>
         </div>
         <!-- /.login-logo -->
-        <div class="login-box-body">
-            <p class="login-box-msg">@ViewBag.Task</p>
-            @RenderBody()
+        <div class="row">
+            <div class="login-box-body  col-lg-3 col-lg-offset-2">
+                <p class="login-box-msg">@ViewBag.Task</p>
+                @RenderBody()
+            </div>
+            <!-- /.login-box-body -->
         </div>
-        <!-- /.login-box-body -->
+        
     </div>
     <!-- /.login-box -->
     @Scripts.Render("~/bundles/jquery")

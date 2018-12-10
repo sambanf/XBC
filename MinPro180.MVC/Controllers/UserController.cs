@@ -11,7 +11,6 @@ using MinPro180.ViewModel;
 
 namespace MinPro180.MVC.Controllers
 {
-    [Authorize]
     public class UserController : Controller
     {
         // GET: User
@@ -65,6 +64,7 @@ namespace MinPro180.MVC.Controllers
             return PartialView("_Deactive", UserRepo.GetUser(id));
         }
         [HttpPost]
+        //Deactive
         public ActionResult Deactive(UserViewModel model)
         {
             ResponResultViewModel result = UserRepo.Deactive(model);
@@ -87,7 +87,6 @@ namespace MinPro180.MVC.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModelcs model)
         {
             if (ModelState.IsValid)
