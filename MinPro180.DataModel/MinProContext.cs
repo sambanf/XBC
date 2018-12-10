@@ -399,10 +399,6 @@ namespace MinPro180.DataModel
                 .Property(e => e.password)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<t_user>()
-                .Property(e => e.modified_by)
-                .IsFixedLength();
-
             modelBuilder.Entity<t_version>()
                 .HasMany(e => e.t_feedback)
                 .WithRequired(e => e.t_version)

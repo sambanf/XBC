@@ -103,6 +103,14 @@
       <Project>{94AE3BA9-EB0C-481D-96CA-2CA72135726F}</Project>
       <Name>MinPro180.MVC</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MinPro180.Repository\MinPro180.Repository.csproj">
+      <Project>{A3A34758-E259-43A7-929B-7613D496F9DF}</Project>
+      <Name>MinPro180.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MinPro180.ViewModel\MinPro180.ViewModel.csproj">
+      <Project>{60978D3F-C96E-4177-9919-347312433D9F}</Project>
+      <Name>MinPro180.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,0 +1,22 @@
+﻿@model MinPro180.ViewModel.QuestionViewModel
+
+<tr class="row">
+    <td class="col-sm-8">
+        @*<input type="hidden" id="orderid" name="orderid" value="@Model.id" />*@
+        @Html.HiddenFor(model => model.id)
+        @*@Html.EditorFor(model => model.question_id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+        @Html.EditorFor(model => model.question, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+    </td>
+    <td class="col-sm-4">
+        <div class="dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li class="li-delete" data-id="@Model.id"><a href="#" onclick="RemoveItem(this)">Delete</a></li>
+                <li class="li-submit" data-id="@Model.id"><a href="#" onclick="Process(this)">Delete</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+

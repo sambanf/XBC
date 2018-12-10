@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MinPro180.ViewModel.VDetailViewModel>
+
+<table class="table">
+    <thead>
+        Question
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_Detailitem", item)
+        }
+    </tbody>
+
+</table>

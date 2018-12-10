@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MinPro180.ViewModel.VDetailViewModel>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.question)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+    </thead>
+    <tbody id="question-list">
+        @foreach (var item in Model)
+        {
+            <tr name="question">
+                <td>
+                    @Html.EditorFor(modelItem => item.question, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.version_id)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.question_id)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea rows="4" cols="50" name="answer"></textarea>
+                </td>
+            </tr>
+        }
+    </tbody>    
+</table>
+
+
