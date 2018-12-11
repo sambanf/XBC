@@ -37,18 +37,10 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-=======
-    <Reference Include="Microsoft.AspNet.Scaffolding.EntityFramework.12.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Data.Entity.Design.Extensibility, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
->>>>>>> 9f367eb241eb58c3e49c1aa9955e0640a6b7039d
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,17 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="FeedbackRepo.cs" />
     <Compile Include="TestRepo.cs" />
-=======
     <Compile Include="MenuRepo.cs" />
     <Compile Include="RoleRepo.cs" />
     <Compile Include="UserRepo.cs" />
->>>>>>> 9f367eb241eb58c3e49c1aa9955e0640a6b7039d
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionRepo.cs" />
-    <Compile Include="ResponResultViewModel.cs" />
     <Compile Include="VersionRepo.cs" />
   </ItemGroup>
   <ItemGroup>
