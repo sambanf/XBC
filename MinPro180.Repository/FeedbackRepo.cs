@@ -10,6 +10,7 @@ namespace MinPro180.Repository
 {
     public class FeedbackRepo
     {
+        //POST TO VIEW
         public static List<VDetailViewModel> All()
         {
             List<VDetailViewModel> result = new List<VDetailViewModel>();
@@ -37,7 +38,7 @@ namespace MinPro180.Repository
             return result;
         }
 
-
+        //GET FROM VIEW
         public static long GetLastVersionId()
         {
             VersionViewModel result = new VersionViewModel();
@@ -55,7 +56,8 @@ namespace MinPro180.Repository
             return result.id;
         }
 
-        public static ResponResultViewModel Save(FeedbackViewModel entity)
+        //SET TO DB
+        public static ResponResultViewModel Save(FeedbackViewModel entity, long userid)
         {
             ResponResultViewModel res = new ResponResultViewModel();
             try
@@ -69,7 +71,7 @@ namespace MinPro180.Repository
                         feedback.test_id = entity.test_id;
                         feedback.json_feedback = entity.json_feedback;
 
-                        feedback.created_by = 1;
+                        feedback.created_by = userid;
                         feedback.created_on = DateTime.Now;
                         feedback.is_delete = false;
 
@@ -81,7 +83,7 @@ namespace MinPro180.Repository
                     else
                     {
                         res.Success = false;
-                        res.Message = "Feedback Not FOund";
+                        res.Message = "Feedback Not Found";
                     }
                 }
             }

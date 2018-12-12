@@ -2,7 +2,6 @@
 
 @using (Html.BeginForm("Create", "Version", FormMethod.Post, new { id = "create-form", name = "create-form" }))
 {
-    @Html.AntiForgeryToken()
     <div>
         <div class="panel panel-warning">
             <div class="form-horizontal">
@@ -20,7 +19,7 @@
             <span class="glyphicon glyphicon-plus"> <b>QUESTION</b></span>
         </button>
         <div class="panel panel-warning">
-            <div id="question-list">
+            <div id="question-list1">
                 List Question disini
 
             </div>
@@ -53,10 +52,10 @@
                 type: 'get',
                 data: { search: $("#txt").val()},
                 success: function (result) {
-                    $("#question-list").html(result);
+                    $("#question-list1").html(result);
                 },
                 error: function (err) {
-                    $("#question-list").html(err);
+                    $("#question-list1").html(err);
                 }
             });
         }

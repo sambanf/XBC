@@ -8,8 +8,10 @@ using MinPro180.ViewModel;
 
 namespace MinPro180.MVC.Controllers
 {
+    [Authorize]
     public class MenuController : Controller
     {
+        
         // GET: Menu
         public ActionResult Index(string search)
         {
@@ -29,8 +31,9 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Create(MenuViewModel model)
         {
+            var userid = (long)Session["userid"];
             ViewBag.ListMenu = new SelectList(MenuRepo.All(null), "id", "title");//untuk dropdownlist
-            ResponResultViewModel result = MenuRepo.Update(model);
+            ResponResultViewModel result = MenuRepo.Update(model, userid);
             return Json(new
             {
                 success = result.Success,
@@ -47,8 +50,9 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(MenuViewModel model)
         {
+            var userid = (long)Session["userid"];
             ViewBag.ListMenu = new SelectList(MenuRepo.All(null), "id", "title");//untuk dropdownlist
-            ResponResultViewModel result = MenuRepo.Update(model);
+            ResponResultViewModel result = MenuRepo.Update(model, userid);
             return Json(new
             {
                 success = result.Success,
@@ -63,7 +67,8 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Deactive(MenuViewModel model)
         {
-            ResponResultViewModel result = MenuRepo.Deactive(model);
+            var userid = (long)Session["userid"];
+            ResponResultViewModel result = MenuRepo.Deactive(model, userid);
             return Json(new
             {
                 success = result.Success,

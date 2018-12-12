@@ -28,7 +28,8 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Create(RoleViewModel model)
         {
-            ResponResultViewModel result = RoleRepo.Update(model);
+            var userid = (long)Session["userid"];
+            ResponResultViewModel result = RoleRepo.Update(model, userid);
             return Json(new
             {
                 success = result.Success,
@@ -44,7 +45,8 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(RoleViewModel model)
         {
-            ResponResultViewModel result = RoleRepo.Update(model);
+            var userid = (long)Session["userid"];
+            ResponResultViewModel result = RoleRepo.Update(model, userid);
             return Json(new
             {
                 success = result.Success,
@@ -59,7 +61,8 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Deactive(RoleViewModel model)
         {
-            ResponResultViewModel result = RoleRepo.Deactive(model);
+            var userid = (long)Session["userid"];
+            ResponResultViewModel result = RoleRepo.Deactive(model, userid);
             return Json(new
             {
                 success = result.Success,

@@ -79,7 +79,7 @@ namespace MinPro180.Repository
             return result;
         }
 
-        public static ResponResultViewModel Update(UserViewModel entity)
+        public static ResponResultViewModel Update(UserViewModel entity, long userid)
         {
             //untuk create & edit
             ResponResultViewModel result = new ResponResultViewModel();
@@ -95,7 +95,7 @@ namespace MinPro180.Repository
                         user.role_id = entity.role_id;
                         user.mobile_flag = entity.mobile_flag;
                         user.mobile_token = entity.mobile_token;
-                        user.created_by = entity.id;
+                        user.created_by = userid;
                         user.created_on = DateTime.Now;
                         user.active = entity.active;
 
@@ -115,7 +115,7 @@ namespace MinPro180.Repository
                             user.role_id = entity.role_id;
                             user.mobile_flag = entity.mobile_flag;
                             user.mobile_token = entity.mobile_token;
-                            user.modified_by = entity.id;
+                            user.modified_by = userid;
                             user.modified_on = DateTime.Now;
                             user.active = entity.active;
 
@@ -133,7 +133,7 @@ namespace MinPro180.Repository
             return result;
         }
 
-        public static ResponResultViewModel Deactive(UserViewModel entity)
+        public static ResponResultViewModel Deactive(UserViewModel entity, long userid)
         {
             //untuk deactive
             ResponResultViewModel result = new ResponResultViewModel();
@@ -145,7 +145,8 @@ namespace MinPro180.Repository
                     if (user != null)
                     {
                         user.active = false;
-
+                        user.modified_by = userid;
+                        user.modified_on = DateTime.Now;
                         db.SaveChanges();
                         result.Entity = entity;
                     }

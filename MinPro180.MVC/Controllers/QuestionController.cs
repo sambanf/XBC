@@ -5,18 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace MinPro180.MVC.Controllers
 {
+    [Authorize]
     public class QuestionController : Controller
     {
         // GET: Question
         public ActionResult Index()
         {
+            
             return View();
         }
+
         public ActionResult List(string search)
         {
+            
             return PartialView("_List", QuestionRepo.All(search));
         }
         public ActionResult Create()
@@ -27,7 +32,8 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Create(QuestionViewModel model)
         {
-            ResponResultViewModel result = QuestionRepo.Update(model);
+            var userid =  (long)Session["userid"];
+            ResponResultViewModel result = QuestionRepo.Update(model, userid);
             return Json(new
             {
                 success = result.Success,
@@ -44,7 +50,8 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Delete(QuestionViewModel model)
         {
-            ResponResultViewModel result = QuestionRepo.Update(model);
+            var userid = (long)Session["userid"];
+            ResponResultViewModel result = QuestionRepo.Update(model, userid);
             return Json(new
             {
                 success = result.Success,
