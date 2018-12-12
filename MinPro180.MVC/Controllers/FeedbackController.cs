@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MinPro180.MVC.Controllers
 {
+    [Authorize]
     public class FeedbackController : Controller
     {
         // GET: Feedback
@@ -27,7 +28,8 @@ namespace MinPro180.MVC.Controllers
 
         public ActionResult Create(FeedbackViewModel model)
         {
-            ResponResultViewModel respon = FeedbackRepo.Save(model);
+            var userid = (long)Session["userid"];
+            ResponResultViewModel respon = FeedbackRepo.Save(model, userid);
             return Json(new
             {
                 success = respon.Success,

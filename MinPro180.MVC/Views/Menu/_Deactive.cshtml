@@ -3,7 +3,6 @@
 
 @using (Html.BeginForm("Deactive", "Menu", FormMethod.Post, new { id = "edit-form", name = "edit-form" }))
 {
-    @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

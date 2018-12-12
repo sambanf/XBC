@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Collections.Specialized.BitVector32;
 
 namespace MinPro180.Repository
 {
@@ -12,6 +13,7 @@ namespace MinPro180.Repository
     {
         public static List<QuestionViewModel> All(string searchString)
         {
+            
             List<QuestionViewModel> result = new List<QuestionViewModel>();
             using (var db = new MinProContext())
             {
@@ -42,7 +44,7 @@ namespace MinPro180.Repository
         }
 
 
-        public static ResponResultViewModel Update(QuestionViewModel entity)
+        public static ResponResultViewModel Update(QuestionViewModel entity, long userid)
         {
             //Untuk create dan edit
             ResponResultViewModel result = new ResponResultViewModel();
@@ -57,7 +59,7 @@ namespace MinPro180.Repository
 
                         question.question = entity.question;
 
-                        question.created_by = 1;
+                        question.created_by = userid;
                         question.created_on = DateTime.Now;
 
                         question.is_delete = false;
@@ -74,7 +76,7 @@ namespace MinPro180.Repository
                         if (question != null)
                         {
                             question.question = entity.question;
-                            question.deleted_by = 1;
+                            question.deleted_by = userid;
                             question.deleted_on = DateTime.Now;
 
                             question.is_delete = true;

@@ -11,6 +11,7 @@ using MinPro180.ViewModel;
 
 namespace MinPro180.MVC.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         // GET: User
@@ -32,8 +33,9 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Create(UserViewModel model)
         {
+            var userid = (long)Session["userid"];
             ViewBag.ListRole = new SelectList(RoleRepo.All(null), "id", "name");//untuk dropdownlist
-            ResponResultViewModel result = UserRepo.Update(model);
+            ResponResultViewModel result = UserRepo.Update(model, userid);
             return Json(new
             {
                 success = result.Success,
@@ -50,8 +52,9 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(UserViewModel model)
         {
+            var userid = (long)Session["userid"];
             ViewBag.ListRole = new SelectList(RoleRepo.All(null), "id", "name");//untuk dropdownlist
-            ResponResultViewModel result = UserRepo.Update(model);
+            ResponResultViewModel result = UserRepo.Update(model, userid);
             return Json(new
             {
                 success = result.Success,
@@ -67,7 +70,8 @@ namespace MinPro180.MVC.Controllers
         //Deactive
         public ActionResult Deactive(UserViewModel model)
         {
-            ResponResultViewModel result = UserRepo.Deactive(model);
+            var userid = (long)Session["userid"];
+            ResponResultViewModel result = UserRepo.Deactive(model, userid);
             return Json(new
             {
                 success = result.Success,
@@ -79,15 +83,15 @@ namespace MinPro180.MVC.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
-            if (this.Request.IsAuthenticated)
-            {
-                return RedirectToAction("Index");
-            }
+            //if (this.Request.IsAuthenticated)
+            //{
+            //    return RedirectToAction("Index");
+            //}
             return PartialView();
         }
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> Login(LoginViewModelcs model)
+        public ActionResult Login(LoginViewModelcs model)
         {
             if (ModelState.IsValid)
             {
@@ -96,8 +100,9 @@ namespace MinPro180.MVC.Controllers
                 {
                     SignInAsync(model.username);
                     UserViewModel item = UserRepo.GetByUsername(model.username);
-                    Session["User"] = item;
-                    return RedirectToAction("Index", "Home");
+                    Session["userid"] = item.id;
+                    Session["User"] = item.username;
+                    //return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -132,6 +137,7 @@ namespace MinPro180.MVC.Controllers
             if (ModelState.IsValid)
             {
                 //kalo user ada maka update info user/ganti password
+
                 var user = UserRepo.CheckUser(model);
                 if (user != null)
                 {

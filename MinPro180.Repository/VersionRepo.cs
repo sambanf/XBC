@@ -10,7 +10,7 @@ namespace MinPro180.Repository
 {
     public class VersionRepo
     {
-        public static List<VersionViewModel> All()
+        public static List<VersionViewModel> All(long userid)
         {
             List<VersionViewModel> result = new List<VersionViewModel>();
             using (var db = new MinProContext())
@@ -29,7 +29,7 @@ namespace MinPro180.Repository
 
                     version.version = 1;
 
-                    version.created_by = 1;
+                    version.created_by = userid;
                     version.created_on = DateTime.Now;
 
                     version.is_delete = false;
@@ -70,7 +70,7 @@ namespace MinPro180.Repository
             return result;
         }
 
-        public static ResponResultViewModel Create(VersionViewModel entity)
+        public static ResponResultViewModel Create(VersionViewModel entity, long userid)
         {
             //Create n Version + 1
             ResponResultViewModel result = new ResponResultViewModel();
@@ -82,7 +82,7 @@ namespace MinPro180.Repository
 
                     version.version = entity.version;
 
-                    version.created_by = 1;
+                    version.created_by = userid;
                     version.created_on = DateTime.Now;
 
                     version.is_delete = false;
@@ -94,7 +94,7 @@ namespace MinPro180.Repository
                         vd.version_id = version.id;
                         vd.question_id = quiz.id;
 
-                        vd.created_by = 1;
+                        vd.created_by = userid;
                         vd.created_on = DateTime.Now;
 
                         db.t_version_detail.Add(vd);
@@ -138,7 +138,7 @@ namespace MinPro180.Repository
             return result;
         }
 
-        public static ResponResultViewModel Delete(VersionViewModel entity)
+        public static ResponResultViewModel Delete(VersionViewModel entity, long userid)
         {
             //Delete Version
             ResponResultViewModel result = new ResponResultViewModel();
@@ -150,7 +150,7 @@ namespace MinPro180.Repository
                     if (version != null)
                     {
                         version.version = entity.version;
-                        version.deleted_by = 1;
+                        version.deleted_by = userid;
                         version.deleted_on = DateTime.Now;
 
                         version.is_delete = true;
@@ -175,23 +175,9 @@ namespace MinPro180.Repository
             return result;
         }
 
-        public static List<VDetailViewModel> Detail()
+        public static List<QuestionViewModel> Detail()
         {
-            List<VDetailViewModel> result = new List<VDetailViewModel>();
-            using (var db = new MinProContext())
-            {
-                result = (from c in db.t_version_detail
-                          join q in db.t_question on c.question_id equals q.id
-                          select new VDetailViewModel
-                          {
-
-                              id = c.id,
-                              version_id = c.version_id,
-                              question_id = c.question_id,
-                              question = q.question
-
-                          }).ToList();
-            }
+            List<QuestionViewModel> result = new List<QuestionViewModel>();
             return result;
         }
 

@@ -1,11 +1,14 @@
-﻿@model IEnumerable<MinPro180.ViewModel.VDetailViewModel>
+﻿@model IEnumerable<MinPro180.ViewModel.QuestionViewModel>
 
 <table class="table">
     <thead>
-        Question
+        <tr>
+            @Html.DisplayNameFor(model =>model.id)
+        </tr>
+        
     </thead>
 
-    <tbody>
+    <tbody  id="question-list">
         @foreach (var item in Model)
         {
             @Html.Partial("_Detailitem", item)

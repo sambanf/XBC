@@ -67,7 +67,7 @@ namespace MinPro180.Repository
             return result;
         }
 
-        public static ResponResultViewModel Update(RoleViewModel entity)
+        public static ResponResultViewModel Update(RoleViewModel entity, long userid)
         {
             //untuk create & edit
             ResponResultViewModel result = new ResponResultViewModel();
@@ -82,7 +82,7 @@ namespace MinPro180.Repository
                         role.code = entity.code;
                         role.name = entity.name;
                         role.description = entity.description;
-                        role.created_by = entity.id;
+                        role.created_by = userid;
                         role.created_on = DateTime.Now;
                         role.active = entity.active;
 
@@ -99,7 +99,7 @@ namespace MinPro180.Repository
                         {
                             role.name = entity.name;
                             role.description = entity.description;
-                            role.modified_by = entity.id;
+                            role.modified_by = userid;
                             role.modified_on = DateTime.Now;
                             role.active = entity.active;
 
@@ -116,7 +116,7 @@ namespace MinPro180.Repository
             }
             return result;
         }
-        public static ResponResultViewModel Deactive(RoleViewModel entity)
+        public static ResponResultViewModel Deactive(RoleViewModel entity, long userid)
         {
             //untuk deactive
             ResponResultViewModel result = new ResponResultViewModel();
@@ -128,7 +128,8 @@ namespace MinPro180.Repository
                     if (role != null)
                     {
                         role.active = false;
-
+                        role.modified_by = userid;
+                        role.modified_on = DateTime.Now;
                         db.SaveChanges();
                         result.Entity = entity;
                     }

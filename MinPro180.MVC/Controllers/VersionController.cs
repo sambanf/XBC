@@ -8,12 +8,14 @@ using System.Web.Mvc;
 
 namespace MinPro180.MVC.Controllers
 {
+    [Authorize]
     public class VersionController : Controller
     {
         // GET: Version
         public ActionResult Index()
         {
-            return View(VersionRepo.All());
+            var userid = (long)Session["userid"];
+            return View(VersionRepo.All(userid));
         }
 
         public ActionResult Create()
@@ -24,7 +26,8 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Create(VersionViewModel model)
         {
-            ResponResultViewModel result = VersionRepo.Create(model);
+            var userid = (long)Session["userid"];
+            ResponResultViewModel result = VersionRepo.Create(model, userid);
             return Json(new
             {
                 success = result.Success,
@@ -41,7 +44,8 @@ namespace MinPro180.MVC.Controllers
         [HttpPost]
         public ActionResult Delete(VersionViewModel model)
         {
-            ResponResultViewModel result = VersionRepo.Delete(model);
+            var userid = (long)Session["userid"];
+            ResponResultViewModel result = VersionRepo.Delete(model, userid);
             return Json(new
             {
                 success = result.Success,

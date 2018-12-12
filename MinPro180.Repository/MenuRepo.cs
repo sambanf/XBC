@@ -80,7 +80,7 @@ namespace MinPro180.Repository
             return result;
         }
 
-        public static ResponResultViewModel Update(MenuViewModel entity)
+        public static ResponResultViewModel Update(MenuViewModel entity, long userid)
         {
             //untuk create & edit
             ResponResultViewModel result = new ResponResultViewModel();
@@ -99,7 +99,7 @@ namespace MinPro180.Repository
                         menu.menu_order = entity.menu_order;
                         menu.menu_parent = entity.menu_parent;
                         menu.menu_url = entity.menu_url;
-                        menu.created_by = entity.id;
+                        menu.created_by = userid;
                         menu.created_on = DateTime.Now;
                         menu.active = entity.active;
 
@@ -120,7 +120,7 @@ namespace MinPro180.Repository
                             menu.menu_order = entity.menu_order;
                             menu.menu_parent = entity.menu_parent;
                             menu.menu_url = entity.menu_url;
-                            menu.created_by = entity.id;
+                            menu.created_by = userid;
                             menu.created_on = DateTime.Now;
                             menu.active = entity.active;
 
@@ -137,7 +137,7 @@ namespace MinPro180.Repository
             }
             return result;
         }
-        public static ResponResultViewModel Deactive(MenuViewModel entity)
+        public static ResponResultViewModel Deactive(MenuViewModel entity, long userid)
         {
             //untuk deactive
             ResponResultViewModel result = new ResponResultViewModel();
@@ -149,7 +149,8 @@ namespace MinPro180.Repository
                     if (menu != null)
                     {
                         menu.active = false;
-
+                        menu.modified_by = userid;
+                        menu.modified_on = DateTime.Now;
                         db.SaveChanges();
                         result.Entity = entity;
                     }
@@ -167,6 +168,7 @@ namespace MinPro180.Repository
             }
             return result;
         }
+
         public static string GetNewMenu()
         {
             string newMenu = String.Format("M");
