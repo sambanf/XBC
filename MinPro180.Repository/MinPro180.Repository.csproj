@@ -52,16 +52,21 @@
   <ItemGroup>
     <Compile Include="AssignmentRepo.cs" />
     <Compile Include="AuditRepo.cs" />
+    <Compile Include="BatchRepo.cs" />
     <Compile Include="BiodataRepo.cs" />
     <Compile Include="BootcampTypeRepo.cs" />
     <Compile Include="CategoryRepo.cs" />
+    <Compile Include="ClassRepo.cs" />
     <Compile Include="FeedbackRepo.cs" />
     <Compile Include="IdleRepo.cs" />
     <Compile Include="MenuAccessRepo.cs" />
     <Compile Include="MonitoringRepo.cs" />
+    <Compile Include="RoomRepo.cs" />
+    <Compile Include="TechnologyRepo.cs" />
     <Compile Include="TestRepo.cs" />
     <Compile Include="MenuRepo.cs" />
     <Compile Include="RoleRepo.cs" />
+    <Compile Include="TrainerRepo.cs" />
     <Compile Include="UserRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionRepo.cs" />

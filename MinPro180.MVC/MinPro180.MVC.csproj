@@ -203,8 +203,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AssignmentController.cs" />
+    <Compile Include="Controllers\BatchController.cs" />
     <Compile Include="Controllers\BiodataController.cs" />
     <Compile Include="Controllers\BootcampTypeController.cs" />
+    <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdleController.cs" />
@@ -212,6 +214,7 @@
     <Compile Include="Controllers\MenuAccessController.cs" />
     <Compile Include="Controllers\MonitoringController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\VersionController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -1184,6 +1187,21 @@
     <Content Include="Views\MenuAccess\_ListMenuAccess.cshtml" />
     <Content Include="Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Views\Shared\_SidebarPartial.cshtml" />
+    <Content Include="Views\Batch\Index.cshtml" />
+    <Content Include="Views\Batch\IndexClass.cshtml" />
+    <Content Include="Views\Batch\_Create.cshtml" />
+    <Content Include="Views\Batch\_CreatePart.cshtml" />
+    <Content Include="Views\Batch\_DeletePart.cshtml" />
+    <Content Include="Views\Batch\_List.cshtml" />
+    <Content Include="Views\Batch\_ListPart.cshtml" />
+    <Content Include="Views\Batch\_Update.cshtml" />
+    <Content Include="Views\Class\Index.cshtml" />
+    <Content Include="Views\Class\_List.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\_Create.cshtml" />
+    <Content Include="Views\Test\_Deact.cshtml" />
+    <Content Include="Views\Test\_List.cshtml" />
+    <Content Include="Views\Test\_Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

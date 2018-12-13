@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Batch";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Test</h3>
+        @*<div class="row">
+            <div class="col-lg-12">
+                <button type="button" id="btn-new" class="btn btn-success btn-sm">Create New</button>
+            </div>
+        </div>*@
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12" id="table-list">
+                <h3>Loading...</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetList();
+        });
+
+        //$(document).ready(function () {
+        //    $('#example1').DataTable({
+        //        'sDom': 'tip',
+        //        ordering: false
+        //    });
+        //    $("#tb-input").find(".column_filter").on("keyup click", function () {
+        //        filterColumn($(this).attr("data-column"));
+        //    });
+
+        //});
+
+        //function filterColumn(i) {
+        //    $("#example1").DataTable().column(i).search(
+        //        $("#col" + i + "_filter").val()
+        //    ).draw();
+        //}
+
+        //$("#btn-search").click(function () {
+        //    $("#tb-input .form-control").each(function (i) {
+        //        filterColumn($(this).attr('data'));
+        //    })
+
+        //})
+
+        function GetList() {
+            $.ajax({
+                url: '@Url.Action("List","Batch")',
+                type: 'get',
+                //data: { search: $("#txt").val() },
+                success: function (result) {
+                    $("#table-list").html(result);
+                },
+                error: function (err) {
+                    $("#table-list").html(err);
+                }
+            });
+        }
+
+        //search
+        $("#table-list").on("change","#cari", function () {
+            var data = $(this).val();
+            $.ajax({
+                url: '@Url.Action("Search", "Batch")',
+                type: 'get',
+                dataType: 'html',
+                data: { code: data },
+                success: function (result) {
+                    $("#table-list").html(result);
+                }
+            });
+        });
+
+        $("#table-list").on("click", ".btn-edit", function () {
+            $.ajax({
+                url: '@Url.Action("Update", "Batch")',
+                type: 'get',
+                data: { id: $(this).attr("data-id") },
+                success: function (result) {
+                    $(".modal-title").html("Edit Batch Data");
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show");
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        });
+
+        $("#table-list").on("click", ".btn-addpart", function () {
+            $.ajax({
+                url: '@Url.Action("CreatePart", "Batch")',
+                type: 'get',
+                data: { id: $(this).attr("data-id") },
+                success: function (result) {
+                    $(".modal-title").html("Add Batch" + "Participant");
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show");
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        });
+    </script>
+}
+

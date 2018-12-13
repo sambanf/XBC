@@ -1,0 +1,64 @@
+﻿@model MinPro180.ViewModel.TestViewModel
+
+<h5>Are you sure you want to deactivate this?</h5>
+@using (Html.BeginForm("Deact", "Test", FormMethod.Post, new { id = "deact-form", name = "deact-form" }))
+{
+    
+    @Html.HiddenFor(x => x.id)
+    @Html.HiddenFor(x => x.active)
+    @Html.HiddenFor(x => x.name)
+    <div>
+
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.notes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.notes)
+            </dd>
+
+        </dl>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="btn-group btn-group-sm">
+                    <input type="button" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+                    <input type="submit" value="Deactivate" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+    $("#deact-form").submit(function () {
+
+        $.ajax({
+            url: '@Url.Action("Deact", "Test")',
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data successfully deactivated! Name : " + result.entity.name);
+                    $(".modal").modal("hide");
+                    GetList();
+                } else {
+                    alert("Error! " + result.message);
+                }
+            }
+        });
+        return false;
+    });
+    </script>

@@ -63,7 +63,7 @@
 
     @using (Html.BeginForm("Delete", "BootcampType", FormMethod.Post, new { id = "delete-form", name = "delete-form" }))
     {
-        @Html.AntiForgeryToken()
+        
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">

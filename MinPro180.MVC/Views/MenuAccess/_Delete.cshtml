@@ -39,7 +39,7 @@
 
     @using (Html.BeginForm("Delete", "MenuAccess", FormMethod.Post, new { id = "delete-form", name = "delete-form" }))
     {
-        @Html.AntiForgeryToken()
+        
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">

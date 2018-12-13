@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MinPro180.ViewModel.ClassViewModel>
+
+<table class="table">
+    <tr>
+        <td colspan="3">
+            <input type="text" class="form-control" id="cari" name="cari" placeholder="Search by Name" />
+        </td>
+        <td>
+            @*<button type="button" id="btn-new" class="btn btn-success btn-sm">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </button>*@
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.batchtech)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bioname)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.batchtech)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bioname)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button type="button" class="btn btn-warning dropdown-toggle" id="dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-btn">
+                        <li class="li-Deactivate btn-deact" data-id="@item.id" title="Delete">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

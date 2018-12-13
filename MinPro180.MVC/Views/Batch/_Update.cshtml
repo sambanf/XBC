@@ -1,0 +1,112 @@
+﻿@model MinPro180.ViewModel.BatchViewModel
+
+@using (Html.BeginForm("Update", "Batch", FormMethod.Post, new { id = "update-form", name = "update-form" }))
+{
+    
+    //@Html.HiddenFor(x => x.created_by, new { Value = "1" })
+    @Html.HiddenFor(x => x.is_delete, new { Value = false })
+    @Html.HiddenFor(x => x.id)
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.technology_id, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.technology_id, (IEnumerable<SelectListItem>)ViewBag.Technology, "Technology", new { @class = "form-control" })
+                @*@Html.TextBoxFor(model => model.technology_id, new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.technology_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.trainer_id, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.trainer_id, (IEnumerable<SelectListItem>)ViewBag.Trainer, "Trainer", new { @class = "form-control" })
+                @*@Html.EditorFor(model => model.trainer_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.trainer_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.period_from, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.period_from, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "Period from" } })
+                @Html.ValidationMessageFor(model => model.period_from, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.period_to, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.period_to, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "Period to" } })
+                @Html.ValidationMessageFor(model => model.period_to, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.room_id, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @*@Html.DropDownListFor(model => model.room_id, (IEnumerable<SelectListItem>)ViewBag.Room, "Room", new { @class = "form-control" })*@
+                @Html.TextBoxFor(model => model.room_id, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.room_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bootcamp_type_id, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.bootcamp_type_id, (IEnumerable<SelectListItem>)ViewBag.BootcampType, "Bootcamp Type", new { @class = "form-control" })
+                @*@Html.EditorFor(model => model.bootcamp_type_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.bootcamp_type_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-6 col-md-9">
+                <div class="btn-group btn-group-sm">
+                    <input type="button" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+                    <input type="submit" value="Update" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $("#update-form").submit(function () {
+
+        $.ajax({
+            url: '@Url.Action("Update", "Batch")',
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data successfully updated! Name : " + result.entity.name);
+                    $(".modal").modal("hide");
+                    GetList();
+                } else {
+                    alert("Error! " /*+ result.message*/);
+                }
+            }
+        });
+        return false;
+    });
+</script>
