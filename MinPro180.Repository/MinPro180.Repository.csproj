@@ -63,6 +63,7 @@
     <Compile Include="MonitoringRepo.cs" />
     <Compile Include="RoomRepo.cs" />
     <Compile Include="TechnologyRepo.cs" />
+    <Compile Include="TestimonyRepo.cs" />
     <Compile Include="TestRepo.cs" />
     <Compile Include="MenuRepo.cs" />
     <Compile Include="RoleRepo.cs" />

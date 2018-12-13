@@ -7,31 +7,28 @@ using System.Threading.Tasks;
 
 namespace MinPro180.ViewModel
 {
-    public class TrainerViewModel
+    public class TechnologyTrainerViewModel
     {
-        public TrainerViewModel()
-        {
-            active = true;
-        }
         public long id { get; set; }
 
-        [Required]
-        [StringLength(255)]
+        public long technology_id { get; set; }
+
+        [Display(Name = "NAME")]
+        public long trainer_id { get; set; }
+
         [Display(Name = "NAME")]
         public string name { get; set; }
 
-        [StringLength(255)]
         [Display(Name = "NOTES")]
         public string notes { get; set; }
 
-        [Display(Name = "STATUS")]
-        public bool active { get; set; }
-
-        [Display(Name = "CREATED BY")]
+        [Display(Name = "CREATE BY")]
         public long created_by { get; set; }
 
         public DateTime created_on { get; set; }
 
+        [Display(Name = "STATUS")]
+        public bool active { get; set; }
         public string status
         {
             get

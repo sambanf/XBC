@@ -9,6 +9,10 @@ namespace MinPro180.ViewModel
 {
     public class TechnologyViewModel
     {
+        public TechnologyViewModel()
+        {
+            active = true;
+        }
         public long id { get; set; }
 
         [Required]
@@ -42,5 +46,7 @@ namespace MinPro180.ViewModel
                 }
             }
         }
+
+        public List<TrainerViewModel> trainer { get; set; }
     }
 }

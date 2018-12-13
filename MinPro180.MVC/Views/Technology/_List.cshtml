@@ -1,0 +1,148 @@
+﻿@model IEnumerable<MinPro180.ViewModel.TechnologyViewModel>
+
+<table class="table">
+    <tr>
+        <td>
+            <input type="text" class="form-control" id="txt" />
+        </td>
+        <td>
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-warning btn-src">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_by)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.active)
+        </th>
+        <th>
+            <button id="btn-new-tech" type="button" class="btn btn-warning btn-new">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.created_by)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li class="li-delete" data-id="@item.id"><a href="#">Deactivate</a></li>
+                        <li class="li-edit" data-id="@item.id"><a href="#">Edit</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+@* Modal *@
+<div id="mver" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="bmodver" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 id="mvertitle" class="modal-title">Create</h4>
+            </div>
+            <div id="mverbody" class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div id="qmod" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="bmodque" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 id="qmodtitle" class="modal-title">Create</h4>
+            </div>
+            <div id="qmodbody" class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+        $('#btn-new-tech').click(function () {
+            $.ajax({
+                url: '@Url.Action("Create","Technology")',
+                type: 'get',
+                success: function (result) {
+                    $("#mvertitle").html("TECHNOLOGY")
+                    $("#mverbody").html(result);
+                    $("#mver").modal("show")
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+
+        });
+</script>
+
+<script type="text/javascript">
+    $(".li-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "Technology")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $("#mvertitle").html("Deactivate Technology?");
+                $("#mverbody").html(result);
+                $("#mver").modal("show");
+            }
+        });
+
+    })
+</script>
+
+<script type="text/javascript">
+    $(".li-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "Technology")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $("#mvertitle").html("TECHNOLOGY");
+                $("#mverbody").html(result);
+                $("#mver").modal("show");
+            }
+        });
+
+    })
+</script>
+
+<script type="text/javascript">
+        $(".btn-src").click(function () {
+            $.ajax({
+                url: '@Url.Action("List", "Technology")',
+                type: 'get',
+                data: { search: $("#txt").val() },
+                success: function (result) {
+                    GetList();
+                }
+            });
+        })
+</script>

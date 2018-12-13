@@ -214,7 +214,10 @@
     <Compile Include="Controllers\MenuAccessController.cs" />
     <Compile Include="Controllers\MonitoringController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\TechnologyController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TestimonyController.cs" />
+    <Compile Include="Controllers\TrainerController.cs" />
     <Compile Include="Controllers\VersionController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -1202,6 +1205,27 @@
     <Content Include="Views\Test\_Deact.cshtml" />
     <Content Include="Views\Test\_List.cshtml" />
     <Content Include="Views\Test\_Update.cshtml" />
+    <Content Include="Views\TechnologyTrainer\_List.cshtml" />
+    <Content Include="Views\Technology\Index.cshtml" />
+    <Content Include="Views\Technology\_Create.cshtml" />
+    <Content Include="Views\Technology\_Delete.cshtml" />
+    <Content Include="Views\Technology\_Detail.cshtml" />
+    <Content Include="Views\Technology\_Detail2.cshtml" />
+    <Content Include="Views\Technology\_Detailtrainer.cshtml" />
+    <Content Include="Views\Technology\_Edit.cshtml" />
+    <Content Include="Views\Technology\_List.cshtml" />
+    <Content Include="Views\Technology\_Trainer.cshtml" />
+    <Content Include="Views\Technology\_Trainer2.cshtml" />
+    <Content Include="Views\Testimony\Index.cshtml" />
+    <Content Include="Views\Testimony\_Create.cshtml" />
+    <Content Include="Views\Testimony\_Delete.cshtml" />
+    <Content Include="Views\Testimony\_Edit.cshtml" />
+    <Content Include="Views\Testimony\_List.cshtml" />
+    <Content Include="Views\Trainer\Index.cshtml" />
+    <Content Include="Views\Trainer\_Create.cshtml" />
+    <Content Include="Views\Trainer\_Delete.cshtml" />
+    <Content Include="Views\Trainer\_Edit.cshtml" />
+    <Content Include="Views\Trainer\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Technology";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>TECHNOLOGY</h3>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12" id="table-list">
+                <h3>LOADING...</h3>
+                <h5>Nanti listnya ada di sini...</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetList();
+        });
+        function GetList() {
+            $.ajax({
+                url: '@Url.Action("List", "Technology")',
+                type: 'get',
+                data: { search: $("#txt").val() },
+                success: function (result) {
+                    $("#table-list").html(result);
+                },
+                error: function (err) {
+                    $("#table-list").html(err);
+                }
+            });
+        }
+
+
+        function RemoveItem(obj) {
+            var tr = $(obj).closest("tr");
+            if (confirm("Delete Trainer?")) {
+                tr.remove();
+            }
+        }
+</script>
+}

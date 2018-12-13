@@ -29,8 +29,8 @@ namespace MinPro180.MVC.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Technology=new SelectList(TechnologyRepo.All(), "id", "name");
-            ViewBag.Trainer = new SelectList(TrainerRepo.All(), "id", "name");
+            ViewBag.Technology=new SelectList(TechnologyRepo.All(null), "id", "name");
+            ViewBag.Trainer = new SelectList(TrainerRepo.All(null), "id", "name");
             ViewBag.BootcampType = new SelectList(BootcampTypeRepo.All(), "id", "name");
             ViewBag.Room = new SelectList(RoomRepo.All(), "id", "name");
             return PartialView("_Create");
@@ -50,8 +50,8 @@ namespace MinPro180.MVC.Controllers
 
         public ActionResult Update(int id)
         {
-            ViewBag.Technology=new SelectList(TechnologyRepo.All(), "id", "name");
-            ViewBag.Trainer = new SelectList(TrainerRepo.All(), "id", "name");
+            ViewBag.Technology=new SelectList(TechnologyRepo.All(null), "id", "name");
+            ViewBag.Trainer = new SelectList(TrainerRepo.All(null), "id", "name");
             ViewBag.BootcampType = new SelectList(BootcampTypeRepo.All(), "id", "name");
             ViewBag.Room = new SelectList(RoomRepo.All(), "id", "name");
             return PartialView("_Update", BatchRepo.Get(id));

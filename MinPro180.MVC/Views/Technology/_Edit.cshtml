@@ -1,0 +1,121 @@
+﻿@model MinPro180.ViewModel.TechnologyViewModel
+
+@using (Html.BeginForm("Edit", "Technology", FormMethod.Post, new { id = "edit-form", name = "edit-form" }))
+{
+    
+    <div>
+        <div class="panel panel-warning">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button type="button" id="btn-new-t" class="btn btn-warning btn-new" href="#qmod">
+            <span class="glyphicon glyphicon-plus"> <b>TRAINER</b></span>
+        </button>
+        <div class="panel panel-warning">
+            <div id="trainer-list1">
+                List Trainer disini
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-8 col-md-4">
+                    <div class="btn-group btn-group-sm">
+                        <input type="submit" value="Save" class="btn btn-warning btn-sm" />
+                        <input type="button" value="Cancel" class="btn btn-default btn-sm" data-dismiss="modal" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+        $(document).ready(function () {
+            GetList();
+        });
+
+        function GetList(){
+            $.ajax({
+                url: '@Url.Action("Detail2","Technology")',
+                type: 'get',
+                data: { search: $("#txt").val()},
+                success: function (result) {
+                    $("#trainer-list1").html(result);
+                },
+                error: function (err) {
+                    $("#trainer-list1").html(err);
+                }
+            });
+        }
+    //, trainer: $(this).find("input[name=name]").val()
+    $("#edit-form").submit(function () {
+        var tList = [];
+        $(this).find("#trainer-list").find("tr").each(function () {
+            var list = { id: $(this).find("input[name=id]").val(), trainer: $(this).find("input[name=name]").val() }
+            tList.push(list);
+        });
+        var data = { id: $(this).find("#id").val(), name: $(this).find("#name").val(), notes: $(this).find("#notes").val(), trainer: tList };
+        alert(JSON.stringify(data));
+
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: { model: data},
+            success: function (result) {
+                if (result.success) {
+                    //alert($document.getElementsByClassName('form-control'))
+
+                    alert("Update Technology Successful");
+                    $("#mver").modal("hide");
+                    location.reload();
+                } else {
+                    alert("Error!." + result.message)
+                }
+            }
+        });
+        return false;
+    });
+
+
+        $('#btn-new-t').click(function () {
+            $.ajax({
+                url: '@Url.Action("Trainer","Technology")',
+                type: 'get',
+                success: function (result) {
+                    $("#qmodtitle").html("Add new Trainer")
+                    $("#qmodbody").html(result);
+                    $("#qmod").modal("show")
+
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        });
+        $('#bmodque').click(function (e) {
+            $("#qmod").modal("hide")
+        });
+
+</script>
+

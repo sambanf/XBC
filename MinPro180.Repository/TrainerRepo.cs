@@ -10,33 +10,52 @@ namespace MinPro180.Repository
 {
     public class TrainerRepo
     {
-        public static List<TrainerViewModel> All()
+        public static List<TrainerViewModel> All(string searchString)
         {
             List<TrainerViewModel> result = new List<TrainerViewModel>();
             using (var db = new MinProContext())
             {
-                result = (from tr in db.t_trainer
-                          where tr.active == true
-                          select new TrainerViewModel                          
-                          {
-                              Id = tr.id,
-                              name = tr.name,
-                              notes = tr.notes,
-                              active = tr.active
-                          }).ToList();
+                if (String.IsNullOrEmpty(searchString))
+                {
+
+                    result = (from tr in db.t_trainer
+                              where tr.active == true
+                              select new TrainerViewModel
+                              {
+                                  id = tr.id,
+                                  name = tr.name,
+                                  notes = tr.notes,
+                                  active = tr.active
+                              }).ToList();
+                }
+                else
+                {
+                    var s = from tr in db.t_trainer
+                            where tr.active == true
+                            select new TrainerViewModel
+                             {
+                                id = tr.id,
+                                name = tr.name,
+                                notes = tr.notes,
+                                active = tr.active
+                            };
+                    s = s.Where(tr => tr.name.Contains(searchString));
+                    result = s.ToList();
+                }
+
             }
             return result;
         }
-        public static TrainerViewModel GetTrainer(long Id)
+        public static TrainerViewModel GetTrainer(long id)
         {
             TrainerViewModel result = new TrainerViewModel();
             using (var db = new MinProContext())
             {
                 result = (from tr in db.t_trainer
-                          where tr.id == Id
+                          where tr.id == id
                           select new TrainerViewModel
                           {
-                              Id = tr.id,
+                              id = tr.id,
                               name = tr.name,
                               notes = tr.notes,
                               active = tr.active
@@ -56,7 +75,7 @@ namespace MinPro180.Repository
             {
                 using (var db = new MinProContext())
                 {
-                    if (entity.Id == 0)
+                    if (entity.id == 0)
                     {
                         t_trainer trainer = new t_trainer();
                         trainer.name = entity.name;
@@ -72,7 +91,7 @@ namespace MinPro180.Repository
                     }
                     else
                     {
-                        t_trainer trainer = db.t_trainer.Where(o => o.id == entity.Id).FirstOrDefault();
+                        t_trainer trainer = db.t_trainer.Where(o => o.id == entity.id).FirstOrDefault();
                         if (trainer != null)
                         {
                             trainer.name = entity.name;
@@ -109,7 +128,7 @@ namespace MinPro180.Repository
             {
                 using (var db = new MinProContext())
                 {
-                    if (entity.Id == 0)
+                    if (entity.id == 0)
                     {
                         t_trainer trainer = new t_trainer();
                         trainer.name = entity.name;
@@ -125,7 +144,7 @@ namespace MinPro180.Repository
                     }
                     else
                     {
-                        t_trainer trainer = db.t_trainer.Where(o => o.id == entity.Id).FirstOrDefault();
+                        t_trainer trainer = db.t_trainer.Where(o => o.id == entity.id).FirstOrDefault();
                         if (trainer != null)
                         {
                             trainer.name = entity.name;
@@ -154,33 +173,5 @@ namespace MinPro180.Repository
             }
             return result;
         }
-        //public static ResponResultViewModel Delete(long Id)
-        //{
-        //    ResponResultViewModel result = new ResponResultViewModel();
-        //    try
-        //    {
-        //        using (var db = new MinProContext())
-        //        {
-        //            t_trainer trainer = db.t_trainer.Where(c => c.id == Id).FirstOrDefault();
-        //            if (trainer == null)
-        //            {
-        //                result.Success = false; result.Message = "Trainer not found.";
-        //            }
-        //            else
-        //            {
-        //                result.Entity = trainer;
-        //                db.t_trainer.Remove(trainer);
-        //                db.SaveChanges();
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Success = false;
-        //        result.Message = ex.Message;
-
-        //    }
-        //    return result;
-        //}
     }
 }
