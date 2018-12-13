@@ -13,6 +13,11 @@ namespace MinPro180.DataModel
         }
 
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<t_assignment> t_assignment { get; set; }
         public virtual DbSet<t_audit_log> t_audit_log { get; set; }
         public virtual DbSet<t_batch> t_batch { get; set; }
@@ -41,6 +46,21 @@ namespace MinPro180.DataModel
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AspNetRole>()
+                .HasMany(e => e.AspNetUsers)
+                .WithMany(e => e.AspNetRoles)
+                .Map(m => m.ToTable("AspNetUserRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
+
+            modelBuilder.Entity<AspNetUser>()
+                .HasMany(e => e.AspNetUserClaims)
+                .WithRequired(e => e.AspNetUser)
+                .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetUser>()
+                .HasMany(e => e.AspNetUserLogins)
+                .WithRequired(e => e.AspNetUser)
+                .HasForeignKey(e => e.UserId);
+
             modelBuilder.Entity<t_assignment>()
                 .Property(e => e.title)
                 .IsUnicode(false);

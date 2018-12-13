@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace MinPro180.MVC.Controllers
 {
-
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()

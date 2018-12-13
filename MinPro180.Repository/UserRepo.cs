@@ -285,7 +285,7 @@ namespace MinPro180.Repository
             {
                 result = (from u in db.t_user
                           join r in db.t_role on u.role_id equals r.id
-                          where u.active == true
+                          where u.active == true && u.username == username
                           select new UserViewModel
                           {
                               id = u.id,

@@ -83,10 +83,10 @@ namespace MinPro180.MVC.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
-            //if (this.Request.IsAuthenticated)
-            //{
-            //    return RedirectToAction("Index");
-            //}
+            if (this.Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index");
+            }
             return PartialView();
         }
         [HttpPost]
@@ -102,7 +102,7 @@ namespace MinPro180.MVC.Controllers
                     UserViewModel item = UserRepo.GetByUsername(model.username);
                     Session["userid"] = item.id;
                     Session["User"] = item.username;
-                    //return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

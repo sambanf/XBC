@@ -51,9 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRole.cs" />
+    <Compile Include="AspNetUser.cs" />
+    <Compile Include="AspNetUserClaim.cs" />
+    <Compile Include="AspNetUserLogin.cs" />
     <Compile Include="C__MigrationHistory.cs" />
     <Compile Include="MinProContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagram.cs" />
     <Compile Include="t_assignment.cs" />
     <Compile Include="t_audit_log.cs" />
     <Compile Include="t_batch.cs" />
