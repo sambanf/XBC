@@ -1,0 +1,63 @@
+﻿@model MinPro180.ViewModel.BootcampTypeViewModel
+
+
+@using (Html.BeginForm("BootcampType", "Edit", FormMethod.Post, new { id = "edit-form", name = "edit-form" }))
+{
+    
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+               <div class="btn-group btn-group-sm">
+                   <input type="submit" value="Save" class="btn btn-warning" />
+                   <input type="button" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+               </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $("#edit-form").submit(function(){
+        $.ajax({
+            url: '@Url.Action("Edit", "BootcampType")',
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Bootcamp Type Edited");
+                    $(".modal").modal("hide");
+                    GetList();
+                } else {
+                    alert("Error" + result.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>

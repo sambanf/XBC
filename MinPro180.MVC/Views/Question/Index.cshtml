@@ -73,6 +73,18 @@
             });
         })
 
+                $("#txt").keyup(function () {
+        $.ajax({
+            url: '@Url.Action("List", "Question")',
+            type: 'get',
+            data: { search: $("#txt").val()},
+            success: function (result) {
+                GetList();
+
+            }
+            });
+        })
+
         $('.btn-new').click(function () {
             $.ajax({
                 url: '@Url.Action("Create","Question")',

@@ -12,7 +12,6 @@ namespace MinPro180.DataModel
         public t_test()
         {
             t_feedback = new HashSet<t_feedback>();
-            t_idle_news = new HashSet<t_idle_news>();
         }
 
         public long id { get; set; }
@@ -36,8 +35,5 @@ namespace MinPro180.DataModel
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<t_feedback> t_feedback { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<t_idle_news> t_idle_news { get; set; }
     }
 }

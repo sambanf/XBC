@@ -378,12 +378,6 @@ namespace MinPro180.DataModel
                 .HasForeignKey(e => e.test_id)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<t_test>()
-                .HasMany(e => e.t_idle_news)
-                .WithRequired(e => e.t_test)
-                .HasForeignKey(e => e.test_id)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<t_testimony>()
                 .Property(e => e.title)
                 .IsUnicode(false);

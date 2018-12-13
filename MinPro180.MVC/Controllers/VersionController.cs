@@ -14,9 +14,15 @@ namespace MinPro180.MVC.Controllers
         // GET: Version
         public ActionResult Index()
         {
-            var userid = (long)Session["userid"];
-            return View(VersionRepo.All(userid));
+            return View();
         }
+
+        public ActionResult List()
+        {
+            var userid = (long)Session["userid"];
+            return PartialView("_List",VersionRepo.All(userid));
+        }
+
 
         public ActionResult Create()
         {

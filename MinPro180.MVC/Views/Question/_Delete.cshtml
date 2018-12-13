@@ -2,7 +2,7 @@
 
 @using (Html.BeginForm("Delete", "Question", FormMethod.Post, new { id = "delete-form", name = "delete-form" }))
 {
-    @Html.AntiForgeryToken()
+   
 
     <div class="form-horizontal">
         @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@

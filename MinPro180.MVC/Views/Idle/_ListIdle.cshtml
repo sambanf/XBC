@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MinPro180.ViewModel.IdleViewModel>
+
+<table class="table" id="_table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.category_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.category_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        
+        <td>
+            <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    @*<span class="caret"></span>*@
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li class="li-delete" data-id="@item.id"><a href="#">Delete</a></li>
+                    <li class="li-edit" data-id="@item.id"><a href="#">Edit</a></li>
+                    <li class="li-publish" data-id="@item.id"><a href="#">Publish</a></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+}
+
+</table>
+
+<script type="text/javascript">
+
+   
+</script>

@@ -49,8 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssignmentRepo.cs" />
     <Compile Include="AuditRepo.cs" />
+    <Compile Include="BiodataRepo.cs" />
+    <Compile Include="BootcampTypeRepo.cs" />
+    <Compile Include="CategoryRepo.cs" />
     <Compile Include="FeedbackRepo.cs" />
+    <Compile Include="IdleRepo.cs" />
+    <Compile Include="MenuAccessRepo.cs" />
+    <Compile Include="MonitoringRepo.cs" />
     <Compile Include="TestRepo.cs" />
     <Compile Include="MenuRepo.cs" />
     <Compile Include="RoleRepo.cs" />

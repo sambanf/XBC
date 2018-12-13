@@ -1,0 +1,154 @@
+﻿@model IEnumerable<MinPro180.ViewModel.AssignmentViewModel>
+
+<table class="table ">
+
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.biodata_id)
+		</th>
+
+		<th>
+			@Html.DisplayNameFor(model => model.start_date)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.end_date)
+		</th>
+
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+
+			<td>
+				@Html.DisplayFor(modelItem => item.bio_name)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => item.start_date)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.end_date)
+			</td>
+
+			<td>
+				<div class="dropdown">
+					<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+						@*<span class="caret"></span>*@
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						@if (item.is_done == false && item.is_hold == false)
+						{
+							<li class="li-Edit" data-id="@item.id"><a href="#">Edit</a></li>
+
+							<li class="li-Delete" data-id="@item.id"><a href="#">Delete</a></li>
+
+							<li class="li-Hold" data-id="@item.id"><a href="#">Hold</a></li>
+
+							<li class="li-Done" data-id="@item.id"><a href="#">Mark As Done</a></li>
+						}
+						@if(item.is_done==true)
+						{
+							<li>Assignment Has Done</li>
+						}
+						@if (  item.is_hold==true)
+						
+						{
+							<li class="li-Delete" data-id="@item.id"><a href="#">Delete</a></li>
+						}
+					</ul>
+
+				</div>
+			</td>
+		</tr>
+	}
+
+</table>
+<script type="text/javascript">
+
+        $('#btn-new').click(function () {
+            $.ajax({
+                url: '@Url.Action("Create","Assignment")',
+                type: 'get',
+                success: function (result) {
+                    $(".modal-title").html("Add Idle")
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show")
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+
+	});
+		  $(".btn-search").click(function () {
+      $.ajax({
+            url: '@Url.Action("List", "Monitoring")',
+            type: 'get',
+            data: { search: $("#txt").val()},
+            success: function (result) {
+             GetList();
+            }
+         });
+		})
+
+	 $(".li-Edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "Assignment")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $(".modal-title").html("Input Idle");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+
+            }
+        });
+
+	})
+	 $(".li-Delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "Assignment")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $(".modal-title").html("Delete Idle");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+
+            }
+        });
+
+	})
+		 $(".li-Hold").click(function () {
+        $.ajax({
+            url: '@Url.Action("Hold", "Assignment")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $(".modal-title").html("Hold Idle");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+
+            }
+        });
+
+	})
+	 $(".li-Done").click(function () {
+        $.ajax({
+            url: '@Url.Action("MarkAsDone", "Assignment")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $(".modal-title").html("Mark As Done");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+
+            }
+        });
+
+	})
+
+</script>

@@ -1,38 +1,14 @@
-﻿@model IEnumerable<MinPro180.ViewModel.VersionViewModel>
+﻿
+
+<div class="panel panel-heading panel-primary">
+</div>
+<div class="panel panel-body">
+    <div class="table-list">
+        Hi halo
+    </div>
+</div>
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.version)
-        </th>
-        <th>
-            <button id="btn-new-version" type="button" class="btn btn-warning btn-new">
-                <span class="glyphicon glyphicon-plus"></span>
-            </button>
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.version)
-            </td>
-            <td>
-                <div class="dropdown">
-                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li class="li-delete" data-id="@item.id"><a href="#">Delete</a></li>
-                    </ul>
-                </div>
-            </td>
-        </tr>
-    }
-
-</table>
 
 @* Modal *@
 <div id="mver" class="modal fade" tabindex="-1" role="dialog">
@@ -69,35 +45,24 @@
 
 @section Scripts{
     <script type="text/javascript">
-        $('#btn-new-version').click(function () {
+        $(document).ready(function () {
+            GetList();
+        });
+
+        function GetList(){
             $.ajax({
-                url: '@Url.Action("Create","Version")',
+                url: '@Url.Action("List","Version")',
                 type: 'get',
                 success: function (result) {
-                    $("#mvertitle").html("Create new Version")
-                    $("#mverbody").html(result);
-                    $("#mver").modal("show")
+                    $(".table-list").html(result);
                 },
                 error: function (err) {
-                    alert(err);
+                    $(".table-list").html(err);
                 }
             });
+        }
+  
 
-        });
-
-    $(".li-delete").click(function () {
-        $.ajax({
-            url: '@Url.Action("Delete", "Version")',
-            type: 'get',
-            data: { id: $(this).attr("data-id") },
-            success: function (result) {
-                $(".modal-title").html("Delete Category");
-                $(".modal-body").html(result);
-                $(".modal").modal("show");
-            }
-        });
-
-        })
         function RemoveItem(obj) {
             var tr = $(obj).closest("tr");
             if (confirm("r u sure to remove this?")) {

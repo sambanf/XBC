@@ -3,7 +3,7 @@
 
 @using (Html.BeginForm("Create", "Question", FormMethod.Post, new { id = "create-form", name = "create-form" }))
 {
-    @*@Html.AntiForgeryToken()*@
+    @**@
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

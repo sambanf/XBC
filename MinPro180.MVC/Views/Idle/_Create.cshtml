@@ -1,0 +1,64 @@
+﻿@model MinPro180.ViewModel.IdleViewModel
+
+
+@using (Html.BeginForm("Create", "Idle", FormMethod.Post, new { id = "create-form", name = "create-form" }))
+{
+
+    <div class="form-horizontal">
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.category_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.category_id, (IEnumerable<SelectListItem>)ViewBag.CategoryList, "-- Select List --", new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="btn-group btn-group-sm">
+                    <input type="button" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+                    <input type="submit" value="Create" class="btn btn-warning" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $("#create-form").submit(function () {
+        $.ajax({
+            url: '@Url.Action("Create", "Idle")',
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("save Success Name : " + result.entity.content);
+                    $(".modal").modal("hide");
+                    GetList();
+                } else {
+                    alert("Errorr .." + result.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>

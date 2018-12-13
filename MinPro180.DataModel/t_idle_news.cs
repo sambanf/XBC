@@ -10,8 +10,6 @@ namespace MinPro180.DataModel
     {
         public long id { get; set; }
 
-        public long test_id { get; set; }
-
         public long category_id { get; set; }
 
         [Required]
@@ -38,7 +36,5 @@ namespace MinPro180.DataModel
         public bool is_delete { get; set; }
 
         public virtual t_category t_category { get; set; }
-
-        public virtual t_test t_test { get; set; }
     }
 }

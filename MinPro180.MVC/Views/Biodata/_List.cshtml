@@ -1,0 +1,90 @@
+﻿@model IEnumerable<MinPro180.ViewModel.BiodataViewModel>
+
+
+<table class="table">
+	
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.name)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.majors)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.gpa)
+		</th>
+
+
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.name)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => item.majors)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.gpa)
+			</td>
+
+
+
+
+			<td>
+				<div class="dropdown">
+					<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+						@*<span class="caret"></span>*@
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li class="li-Edit" data-id="@item.id"><a href="#">Edit</a></li>
+						<li class="li-Deactivate" data-id="@item.id"><a href="#">Deactivate</a></li>
+					</ul>
+
+				</div>
+			</td>
+		</tr>
+	}
+</table>
+
+<script type="text/javascript">
+
+
+
+		
+	 $(".li-Edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "Biodata")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $(".modal-title").html("Edit Biodata");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+
+            }
+        });
+
+	})
+	 $(".li-Deactivate").click(function () {
+        $.ajax({
+            url: '@Url.Action("Deactivate", "Biodata")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $(".modal-title").html("Deactivate Biodata");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+
+            }
+        });
+
+	})
+
+
+</script>

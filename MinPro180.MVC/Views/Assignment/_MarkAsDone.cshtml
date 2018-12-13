@@ -1,0 +1,57 @@
+﻿@model MinPro180.ViewModel.AssignmentViewModel
+
+@using (Html.BeginForm("MarkAsDone", "Assignment", FormMethod.Post, new { id = "done-form", name = "done-form" }))
+{
+	
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+	@Html.HiddenFor(model => model.id)
+	@Html.HiddenFor(model => model.biodata_id)
+	@Html.HiddenFor(model => model.start_date)
+	@Html.HiddenFor(model => model.end_date)
+
+<div class="form-horizontal">
+	<div class="form-group">
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.realization_date, new { htmlAttributes = new { @class = "form-control", @placeholder = "Realization Date" } })
+			@Html.ValidationMessageFor(model => model.realization_date, "", new { @class = "text-danger" })
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control", @placeholder = "Notes" } })
+			@Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="Save" class="btn btn-success" />
+			<input type="button" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+		</div>
+	</div>
+</div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $("#done-form").submit(function () {
+        //alert($(this).serialize());
+        $.ajax({
+			url: '@Url.Action("MarkAsDone","Assignment")',
+			type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data Successfully Added :)");
+                    $(".modal").modal("hide");
+                    GetList();
+                } else {
+                    alert("Error!." + result.message)
+                }
+            }
+        });
+        return false;
+    });
+
+</script>

@@ -1,0 +1,74 @@
+﻿	@model MinPro180.ViewModel.MonitoringViewModel
+
+@using (Html.BeginForm("Create", "Monitoring", FormMethod.Post, new { id = "create-form", name = "create-form" }))
+{
+	
+
+<div class="form-horizontal">
+
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+	@Html.HiddenFor(x=>x.placement_date)
+	<div class="form-group">
+		
+		<div class="col-md-10">
+			@Html.DropDownListFor(model => model.biodata_id,(IEnumerable<SelectListItem>)
+			 ViewBag.Biodatalist, "--Select Name--", new { @class = "form-control" })
+			@Html.ValidationMessageFor(model => model.biodata_id, "", new { @class = "text-danger" })
+		</div>
+	</div>
+	<div class="form-group">
+
+		<div class="col-md-12">
+			@Html.EditorFor(model => model.idle_date, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Idle Date" })
+			@Html.ValidationMessageFor(model => model.idle_date, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+
+		<div class="col-md-12">
+			@Html.EditorFor(model => model.last_project, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last project" } })
+			@Html.ValidationMessageFor(model => model.last_project, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+
+		<div class="col-md-12">
+			@Html.EditorFor(model => model.idle_reason, new { htmlAttributes = new { @class = "form-control", @placeholder = "Idle Reason" } })
+			@Html.ValidationMessageFor(model => model.idle_reason, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="Save" class="btn btn-success" />
+			<input type="button" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+		</div>
+	</div>
+</div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $("#create-form").submit(function () {
+        //alert($(this).serialize());
+        $.ajax({
+			url: '@Url.Action("Create","Monitoring")',
+			type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data Successfully Added");
+                    $(".modal").modal("hide");
+                    GetList();
+                } else {
+                    alert("Error!." + result.message)
+                }
+            }
+        });
+        return false;
+    });
+
+</script>

@@ -1,0 +1,70 @@
+﻿@model MinPro180.ViewModel.IdleViewModel
+
+
+@using (Html.BeginForm("Edit", "Idle", FormMethod.Post, new { id="edit-form", name="edit-form"}))
+{
+    
+    
+    <div class="form-horizontal">
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.category_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.category_id, (IEnumerable<SelectListItem>)ViewBag.CategoryList, "-- Select List --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="btn-group btn-group-sm">
+                    <input type="button" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+                    <input type="submit" value="Save" class="btn btn-warning" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $("#edit-form").submit(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "Idle")',
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("save successfull ");
+                    $(".modal").modal("hide");
+                    GetList();
+                } else {
+                    alert("Error .." + result.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>

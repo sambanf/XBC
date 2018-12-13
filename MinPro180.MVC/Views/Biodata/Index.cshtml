@@ -1,0 +1,97 @@
+﻿@{
+	ViewBag.Title = "Biodata";
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading ">
+		<h3>Biodata</h3>
+	</div>
+	<div class="panel-body">
+		<div class="col-lg-3">
+			<div class="input-group">
+				<input type="text" class="form-control" id="txt" placeholder="Search By Name" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-warning btn-search">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+				</span>
+			</div><!-- /input-group -->
+		</div><!-- /.col-lg-6 -->
+		<div class="col-lg-2 col-lg-offset-5">
+			<button type="button" class="btn btn-warning btn-new">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12" id="table-list">
+			<h1>Loading...</h1>
+			<h8>List is here.. :)</h8>
+		</div>
+	</div>
+</div>
+
+
+@* Modal *@
+<div class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Create</h4>
+			</div>
+			<div class="modal-body">
+				<p>One fine body&hellip;</p>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section Scripts{
+	<script type="text/javascript">
+        $(document).ready(function () {
+            GetList();
+        });
+
+        function GetList(){
+            $.ajax({
+                url: '@Url.Action("List","Biodata")',
+				type: 'get',
+				data: { search: $("#txt").val() },
+                success: function (result) {
+                    $("#table-list").html(result);
+                },
+                error: function (err) {
+                    $("#table-list").html(err);
+                }
+            });
+		}
+	   $('.btn-new').click(function () {
+       $.ajax({
+			url: '@Url.Action("Create","Biodata")',
+            type: 'get',
+            success: function (result) {
+                    $(".modal-title").html("Add Biodata")
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show")
+            },
+            error: function (err) {
+                    alert(err);
+            }
+		   });
+	   });
+	  $(".btn-search").click(function () {
+      $.ajax({
+            url: '@Url.Action("List", "Biodata")',
+            type: 'get',
+            data: { search: $("#txt").val()},
+            success: function (result) {
+             GetList();
+            }
+         });
+      })
+
+
+	</script>
+}
