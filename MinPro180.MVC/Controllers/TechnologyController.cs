@@ -16,6 +16,10 @@ namespace MinPro180.MVC.Controllers
             return View(TechnologyRepo.All(search));
         }
 
+
+
+        
+
         public ActionResult List(string search)
         {
             return PartialView("_List", TechnologyRepo.All(search));
