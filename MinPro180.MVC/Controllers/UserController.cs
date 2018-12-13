@@ -109,7 +109,7 @@ namespace MinPro180.MVC.Controllers
                     ModelState.AddModelError("", "Invalid Login");
                 }
             }
-            return PartialView(model);
+            return View(model);
         }
 
         public ActionResult Logout()

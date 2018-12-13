@@ -9,6 +9,7 @@ namespace MinPro180.ViewModel
 {
     public class QuestionViewModel
     {
+        [Display(Name = "Question")]
         public long id { get; set; }
 
         [Required]
